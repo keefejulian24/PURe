@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Keefe Julian on 3/12/2017.
  */
 
-public abstract class Measurement {
+public class Measurement {
     private Date time;
     private float index;
 
