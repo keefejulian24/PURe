@@ -30,15 +30,45 @@
                 card_view:cardCornerRadius="5dp"
                 card_view:contentPadding="5dp"
                 android:layout_margin="5dp">
-                <TextView
-                    android:id="@+id/weather_title"
+                <android.support.v7.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Weather"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/border_bottom"
-                    android:padding="10dp"/>
-
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/weather_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Weather"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/border_bottom"
+                        android:padding="10dp"/>
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:layout_margin="20dp"
+                            android:src="@mipmap/sunny_icon">
+                        </ImageView>
+                        <android.support.v7.widget.CardView
+                            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/uvi_level"
+                            android:layout_gravity="center_vertical"
+                            android:layout_height="70dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_margin="20dp"
+                            card_view:cardBackgroundColor="#f26f52"
+                            card_view:cardCornerRadius="15dp"
+                            card_view:cardElevation="5dp">
+                        </android.support.v7.widget.CardView>
+                    </android.support.v7.widget.LinearLayoutCompat>
+                </android.support.v7.widget.LinearLayoutCompat>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
