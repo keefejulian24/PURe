@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/location_settings"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:layout_marginBottom="-290dp"
+    tools:context="com.example.pure.pure.MainActivity"
+    tools:showIn="@layout/activity_main">
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/location_card"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:translationZ="0dp"
+        card_view:cardElevation="30dp"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardBackgroundColor="#434449"
+        card_view:cardCornerRadius="15dp"
+        card_view:contentPadding="5dp"
+        android:layout_marginTop="5dp">
+        <TextView
+            android:id="@+id/weather_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:gravity="center_horizontal"
+            android:textColor="#ddd"
+            android:background="@drawable/border_bottom_dark"
+            android:padding="10dp"/>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
