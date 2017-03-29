@@ -4,8 +4,8 @@ import datetime
 import json
 
 class APIManager:
-    def __init__ (self):
-        self.db = DBHandler('localhost', 'root', None, 'PURE')
+    def __init__ (self, server, username, password, dbname):
+        self.db = DBHandler(server, username, password, dbname)
         self.apiData = json.load(open('api-key.json', 'r'))
         self.req = RequestToAPI(self.apiData)
 
