@@ -8,7 +8,12 @@ class APIManager:
         self.db = DBHandler('localhost', 'root', None, 'PURE')
         self.apiData = json.load(open('api-key.json', 'r'))
         self.req = RequestToAPI(self.apiData)
+
+    def connectDB(self):
         self.db.connect()
+    
+    def closeDB(self):
+        self.db.close()
 
     def fetchUVI(self, date):
         data = self.req.getData(self.apiData['uvi'], date)
