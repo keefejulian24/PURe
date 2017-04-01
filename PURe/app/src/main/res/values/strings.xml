@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PURe</string>
     <string name="action_settings">Settings</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin dapibus libero tempor cursus. Quisque porta orci vitae elementum commodo. Sed euismod enim est, sed luctus nunc convallis vel. Nam ligula risus, congue sed aliquam nec, auctor vel elit. Nulla mauris est, venenatis non bibendum vel, sagittis id nisi. Ut at leo vel justo condimentum dapibus ut id velit. Cras molestie pharetra neque, a facilisis enim aliquet vitae. Suspendisse quis varius quam. Nam tincidunt laoreet fermentum. In a nibh laoreet orci hendrerit tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin sagittis sodales pharetra.</string>
 </resources>
