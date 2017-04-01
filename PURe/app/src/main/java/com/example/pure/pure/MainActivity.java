@@ -2,8 +2,6 @@ package com.example.pure.pure;
 
 import android.os.Bundle;
 import android.graphics.*;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
@@ -17,9 +15,6 @@ import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
 import com.androidplot.xy.*;
 
-import java.text.FieldPosition;
-import java.text.Format;
-import java.text.ParsePosition;
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         uviPlot = (XYPlot) findViewById(R.id.uvi_plot);
 
-        final Number[] domainLabels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+        Number[] domainLabels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
         Number[] uvIndex = {0, 2, 5, 6, 10, 9, 11, 8, 1, 1, 0};
 
         XYSeries uviSeries = new SimpleXYSeries(
@@ -56,19 +51,8 @@ public class MainActivity extends AppCompatActivity {
         uviPlot.addSeries(uviSeries, uviSeriesFormatter);
         uviPlot.setDomainLabel("time");
         uviPlot.setRangeLabel("uv index");
-        uviPlot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new Format() {
-            @Override
-            public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
-                int i = Math.round(((Number) obj).floatValue());
-                if (i % 3 == 0)
-                    return toAppendTo.append(domainLabels[i]);
-                else return toAppendTo.append("");
-            }
-            @Override
-            public Object parseObject(String source, ParsePosition pos) {
-                return null;
-            }
-        });
+
+        uviPlot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new CustomUVIFormat(domainLabels));
         uviPlot.setRangeBoundaries(0, 13, BoundaryMode.FIXED);
         uviPlot.setRangeStep(StepMode.INCREMENT_BY_VAL, 3);
 
