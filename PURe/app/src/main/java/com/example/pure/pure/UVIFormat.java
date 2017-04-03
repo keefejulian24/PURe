@@ -4,10 +4,10 @@ import java.text.FieldPosition;
 import java.text.Format;
 import java.text.ParsePosition;
 
-public class CustomUVIFormat extends Format {
+public class UVIFormat extends Format {
     public Number[] domainLabels = null;
 
-    CustomUVIFormat(Number[] domainLabels) {
+    UVIFormat(Number[] domainLabels) {
         this.domainLabels = domainLabels;
     }
 
