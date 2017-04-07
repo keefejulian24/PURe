@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public LineAndPointFormatter uviSeriesFormatter = null;
     public UVIPointLabeler uviPointLabeler = null;
 
-    public int[] mrtTabsColor = new int[]{
+    public static int[] mrtTabsColor = new int[]{
             Color.RED,
             Color.rgb(126, 87, 194),
             Color.GREEN,
