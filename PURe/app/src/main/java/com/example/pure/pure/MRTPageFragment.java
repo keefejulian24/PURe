@@ -92,16 +92,18 @@ public class MRTPageFragment extends Fragment {
                 TextView headerPark = (TextView) getView().findViewById(R.id.header_park);
                 headerPark.setVisibility(View.VISIBLE);
                 ListView parkList = (ListView) getView().findViewById(R.id.park_list);
+                parkList.clearFocus();
                 ArrayList<Park> parks = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(seekBar.getProgress()).getParks();
                 if (parks != null) {
-                    ParkListAdapter adapter = new ParkListAdapter(getActivity().getBaseContext(), parks);
+                    final ParkListAdapter adapter = new ParkListAdapter(getActivity().getBaseContext(), parks);
                     parkList.setAdapter(adapter);
                     parkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             Park selectedPark = (Park) adapterView.getItemAtPosition(i);
-                            // Set Location LatLng to selectedPark.getLocation();
-                            Toast.makeText(getActivity().getApplicationContext(), Double.toString(selectedPark.getLocation().latitude) + ", " + Double.toString(selectedPark.getLocation().longitude), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity().getApplicationContext(), Double.toString(selectedPark.getLocation().latitude) + ", " + Double.toString(selectedPark.getLocation().longitude), Toast.LENGTH_SHORT).show();
+                            ListView pList = (ListView) adapterView;
+                            pList.setItemChecked(i, true);
                         }
                     });
                     parkList.setVisibility(View.VISIBLE);
@@ -115,8 +117,12 @@ public class MRTPageFragment extends Fragment {
         setLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ListView parkList = (ListView) getView().findViewById(R.id.park_list);
                 DiscreteSeekBar mrtSeekBar = (DiscreteSeekBar) getView().findViewById(R.id.mrt_seek_bar);
-                Toast.makeText(getActivity().getApplicationContext(), Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().latitude) + ", " + Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().longitude), Toast.LENGTH_SHORT).show();
+                if (parkList.getCheckedItemPosition() != -1)
+                    Toast.makeText(getActivity().getApplicationContext(), Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().latitude) + ", " + Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().longitude), Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getActivity().getApplicationContext(), Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().latitude) + ", " + Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().longitude), Toast.LENGTH_SHORT).show();
             }
         });
     }

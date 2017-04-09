@@ -17,6 +17,7 @@ public class ParkListAdapter extends ArrayAdapter<Park> {
     public ParkListAdapter(Context context, ArrayList<Park> parks) {
         super(context, 0, parks);
     }
+    private int selectedItem;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
