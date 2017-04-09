@@ -15,14 +15,34 @@
             "latitude": 1.349073,
             "longitude": 103.749664
           },
-          "name": "Bukit Batok"
+          "name": "Bukit Batok",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.35084,
+                "longitude": 103.76481
+              },
+              "name": "Bukit Batok Nature Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
             "latitude": 1.358702,
             "longitude": 103.751787
           },
-          "name": "Bukit Gombak"
+          "name": "Bukit Gombak",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.355912,
+                "longitude": 103.75488
+              },
+              "name": "Bukit Batok Town Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
@@ -53,7 +73,17 @@
             "latitude": 1.425047,
             "longitude": 103.761853
           },
-          "name": "Kranji"
+          "name": "Kranji",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.446111,
+                "longitude": 103.728889
+              },
+              "name": "HortPark",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
@@ -77,7 +107,17 @@
             "latitude": 1.437094,
             "longitude": 103.786483
           },
-          "name": "Woodlands"
+          "name": "Woodlands",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.446392,
+                "longitude": 103.780653
+              },
+              "name": "Admiralty Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
@@ -108,14 +148,42 @@
             "latitude": 1.429464,
             "longitude": 103.835239
           },
-          "name": "Yishun"
+          "name": "Yishun",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.42429,
+                "longitude": 103.84243
+              },
+              "name": "Yishun Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
             "latitude": 1.417167,
             "longitude": 103.8329
           },
-          "name": "Khatib"
+          "name": "Khatib",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.404167,
+                "longitude": 103.839722
+              },
+              "name": "Lower Seletar Reservoir Park",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.401111,
+                "longitude": 103.803889
+              },
+              "name": "Upper Seletar Reservoir Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
@@ -462,14 +530,34 @@
             "latitude": 1.391653,
             "longitude": 103.895133
           },
-          "name": "Sengkang"
+          "name": "Sengkang",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3982,
+                "longitude": 103.8838833
+              },
+              "name": "Sengkang Riverside Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
             "latitude": 1.405264,
             "longitude": 103.902097
           },
-          "name": "Punggol"
+          "name": "Punggol",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.414444,
+                "longitude": 103.903056
+              },
+              "name": "Punggol Waterway Park",
+              "walkingDistance": 0
+            }
+          ]
         }
       ],
       "name": "North East Line"
@@ -542,10 +630,10 @@
           "parks": [
             {
               "location": {
-                "latitude": 1.303956,
-                "longitude": 103.926373
+                "latitude": 1.342222,
+                "longitude": 103.925
               },
-              "name": "East Coast Park",
+              "name": "Bedok Reservoir Park",
               "walkingDistance": 0
             },
             {
@@ -554,6 +642,14 @@
                 "longitude": 103.933333
               },
               "name": "Bedok Town Park",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.303956,
+                "longitude": 103.926373
+              },
+              "name": "East Coast Park",
               "walkingDistance": 0
             }
           ]
@@ -591,7 +687,17 @@
             "latitude": 1.311469,
             "longitude": 103.8714
           },
-          "name": "Kallang"
+          "name": "Kallang",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3065657,
+                "longitude": 103.8699128
+              },
+              "name": "Kallang Riverside Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
@@ -974,7 +1080,17 @@
             "latitude": 1.349078,
             "longitude": 103.839492
           },
-          "name": "Marymount"
+          "name": "Marymount",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.343611,
+                "longitude": 103.831111
+              },
+              "name": "MacRitchie Reservoir Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
@@ -988,7 +1104,17 @@
             "latitude": 1.322519,
             "longitude": 103.815406
           },
-          "name": "Botanic Gardens"
+          "name": "Botanic Gardens",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3151,
+                "longitude": 103.8162
+              },
+              "name": "Singapore Botanic Gardens",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
@@ -1137,7 +1263,17 @@
             "latitude": 1.378436,
             "longitude": 103.761767
           },
-          "name": "Bukit Panjang"
+          "name": "Bukit Panjang",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3702632,
+                "longitude": 103.7782227
+              },
+              "name": "Zhenghua Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
@@ -1151,7 +1287,25 @@
             "latitude": 1.362472,
             "longitude": 103.767389
           },
-          "name": "Hillview"
+          "name": "Hillview",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.352778,
+                "longitude": 103.778333
+              },
+              "name": "Bukit Timah Nature Reserve",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.3638,
+                "longitude": 103.7736
+              },
+              "name": "Dairy Farm Nature Park",
+              "walkingDistance": 0
+            }
+          ]
         },
         {
           "location": {
