@@ -1,6 +1,5 @@
 package com.example.pure.pure;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.graphics.*;
 import android.support.v4.view.ViewPager;
@@ -17,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.androidplot.SeriesRegistry;
 import com.androidplot.ui.SeriesBundle;
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.XYPlot;
@@ -26,19 +24,24 @@ import com.androidplot.xy.*;
 import com.androidplot.Region;
 import com.astuetz.PagerSlidingTabStrip;
 
-import org.w3c.dom.Text;
-import org.xmlpull.v1.XmlPullParser;
-
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private XYPlot uviPlot;
+    private XYPlot psiPlot;
+    private XYPlot pm25Plot;
     public Number[] domainLabels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-    public Number[] uvIndex = {0, 2, 5, 6, 10, 9, 11, 8, 1, 1, 0};
+    public Number[] uviList = {0, 2, 5, 6, 10, 9, 11, 8, 1, 1, 0};
+    public Number[] psiList = {55, 54, 54, 55, 55, 55, 55, 56, 56, 57, 57};
+    public Number[] pm25List = {16, 11, 4, 38, 30, 9, 9, 43, 30, 21, 21};
     public LineAndPointFormatter uviSeriesFormatter = null;
-    public UVIPointLabeler uviPointLabeler = null;
+    public LineAndPointFormatter psiSeriesFormatter = null;
+    public LineAndPointFormatter pm25SeriesFormatter = null;
+    public CustomPointLabeler uviPointLabeler = null;
+    public CustomPointLabeler psiPointLabeler = null;
+    public CustomPointLabeler pm25PointLabeler = null;
 
     public int[] mrtTabsColor = new int[]{
             Color.RED,
@@ -58,71 +61,37 @@ public class MainActivity extends AppCompatActivity {
         /*CREATE UVI PLOT*/
         uviPlot = (XYPlot) findViewById(R.id.uvi_plot);
         uviSeriesFormatter = new LineAndPointFormatter();
-        uviPointLabeler = new UVIPointLabeler(-1);
-        XYSeries uviSeries = new SimpleXYSeries(
-                Arrays.asList(uvIndex),
-                SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
-                "uv-index"
-        );
+        uviPointLabeler = new CustomPointLabeler(-1);
+        createPlot(uviPlot, uviSeriesFormatter, uviPointLabeler, domainLabels, uviList, "time", "uv-index");
 
-        Paint lineFill = new Paint();
-        lineFill.setAlpha(200);
-        lineFill.setColor(Color.YELLOW);
-        //lineFill.setShader(new LinearGradient(0, 250, 0, 0, Color.WHITE, Color.YELLOW, Shader.TileMode.REPEAT));
+        ((CardView) findViewById(R.id.weather_card))/*uviPlot*/.setOnTouchListener(new PlotTouchListener(
+                uviPlot,
+                uviPointLabeler
+        ));
 
-        uviSeriesFormatter.setFillPaint(lineFill);
-        uviSeriesFormatter.setInterpolationParams(
-                new CatmullRomInterpolator.Params(20, CatmullRomInterpolator.Type.Centripetal));
-        uviSeriesFormatter.setPointLabeler(uviPointLabeler);
-        uviSeriesFormatter.setPointLabelFormatter(new PointLabelFormatter(Color.WHITE));
+        /*CREATE PSI PLOT*/
+        psiPlot = (XYPlot) findViewById(R.id.psi_plot);
+        psiSeriesFormatter = new LineAndPointFormatter();
+        psiPointLabeler = new CustomPointLabeler(-1);
+        createPlot(psiPlot, psiSeriesFormatter, psiPointLabeler, domainLabels, psiList, "time", "psi");
+        ((CardView) findViewById(R.id.psi_card)).setOnTouchListener(new PlotTouchListener(
+                psiPlot,
+                psiPointLabeler
+        ));
 
-        uviPlot.addSeries(uviSeries, uviSeriesFormatter);
-        uviPlot.setDomainLabel("time");
-        uviPlot.setRangeLabel("uv index");
-        uviPlot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new UVIFormat(domainLabels));
-        uviPlot.setRangeBoundaries(0, 13, BoundaryMode.FIXED);
-        uviPlot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.LEFT).getPaint().setColor(Color.TRANSPARENT);
-        uviPlot.getGraph().getDomainGridLinePaint().setColor(Color.TRANSPARENT);
-        uviPlot.getGraph().getRangeGridLinePaint().setColor(Color.TRANSPARENT);
-
-        ((CardView) findViewById(R.id.weather_card))/*uviPlot*/.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
-                    case MotionEvent.ACTION_DOWN:
-                        setUVIPointLabeler(new PointF(motionEvent.getX(), motionEvent.getY()));
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                        setUVIPointLabeler(null);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        setUVIPointLabeler(null);
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        setUVIPointLabeler(new PointF(motionEvent.getX(), motionEvent.getY()));
-                        break;
-                    case MotionEvent.ACTION_HOVER_ENTER:
-                        setUVIPointLabeler(new PointF(motionEvent.getX(), motionEvent.getY()));
-                        break;
-                    case MotionEvent.ACTION_HOVER_MOVE:
-                        setUVIPointLabeler(new PointF(motionEvent.getX(), motionEvent.getY()));
-                        break;
-                    case MotionEvent.ACTION_HOVER_EXIT:
-                        setUVIPointLabeler(null);
-                        break;
-                    default:
-                        //Toast.makeText(getApplicationContext(), "DEFAULT", Toast.LENGTH_SHORT).show();
-                        setUVIPointLabeler(null);
-                        break;
-                }
-
-                return true;
-            }
-        });
+        /*CREATE PM25 PLOT*/
+        pm25Plot = (XYPlot) findViewById(R.id.pm25_plot);
+        pm25SeriesFormatter = new LineAndPointFormatter();
+        pm25PointLabeler = new CustomPointLabeler(-1);
+        createPlot(pm25Plot, pm25SeriesFormatter, pm25PointLabeler, domainLabels, pm25List, "time", "pm 2.5 index");
+        ((CardView) findViewById(R.id.pm25_card)).setOnTouchListener(new PlotTouchListener(
+                pm25Plot,
+                pm25PointLabeler
+        ));
 
         /*CREATE UVI BUTTON*/
         final Button buttonUVI = (Button) findViewById(R.id.uvi_level);
-        buttonUVI.setText("UVI: " + uvIndex[uvIndex.length >> 1]);
+        buttonUVI.setText("UVI: " + uviList[uviList.length >> 1]);
 
         buttonUVI.setOnClickListener(new View.OnClickListener() {
             LinearLayoutCompat uviMainContentLayout = (LinearLayoutCompat) findViewById(R.id.uvi_main_content);
@@ -134,6 +103,48 @@ public class MainActivity extends AppCompatActivity {
                     uviMainContentLayoutParams.height = LinearLayoutCompat.LayoutParams.WRAP_CONTENT;
                 } else {
                     uviMainContentLayoutParams.height = 0;
+                }
+
+                isChecked = !isChecked;
+                v.requestLayout();
+            }
+        });
+
+        /*CREATE PSI BUTTON*/
+        final Button buttonPSI = (Button) findViewById(R.id.psi_level);
+        buttonPSI.setText("PSI: " + psiList[psiList.length >> 1]);
+
+        buttonPSI.setOnClickListener(new View.OnClickListener() {
+            LinearLayoutCompat psiMainContentLayout = (LinearLayoutCompat) findViewById(R.id.psi_main_content);
+            LinearLayoutCompat.LayoutParams psiMainContentLayoutParams = (LinearLayoutCompat.LayoutParams) psiMainContentLayout.getLayoutParams();
+            boolean isChecked = false;
+            @Override
+            public void onClick(View v) {
+                if (!isChecked) {
+                    psiMainContentLayoutParams.height = LinearLayoutCompat.LayoutParams.WRAP_CONTENT;
+                } else {
+                    psiMainContentLayoutParams.height = 0;
+                }
+
+                isChecked = !isChecked;
+                v.requestLayout();
+            }
+        });
+
+        /*CREATE PSI BUTTON*/
+        final Button buttonPM25 = (Button) findViewById(R.id.pm25_level);
+        buttonPM25.setText("PM 2.5: " + pm25List[pm25List.length >> 1]);
+
+        buttonPM25.setOnClickListener(new View.OnClickListener() {
+            LinearLayoutCompat pm25MainContentLayout = (LinearLayoutCompat) findViewById(R.id.pm25_main_content);
+            LinearLayoutCompat.LayoutParams pm25MainContentLayoutParams = (LinearLayoutCompat.LayoutParams) pm25MainContentLayout.getLayoutParams();
+            boolean isChecked = false;
+            @Override
+            public void onClick(View v) {
+                if (!isChecked) {
+                    pm25MainContentLayoutParams.height = LinearLayoutCompat.LayoutParams.WRAP_CONTENT;
+                } else {
+                    pm25MainContentLayoutParams.height = 0;
                 }
 
                 isChecked = !isChecked;
@@ -232,7 +243,48 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    void setUVIPointLabeler(PointF point) {
+    private void createPlot(XYPlot plot, LineAndPointFormatter seriesFormatter, CustomPointLabeler pointLabeler,
+                            Number[] domainLabels, Number[] indexList, String domainLabel, String rangeLabel) {
+        XYSeries series = new SimpleXYSeries(
+                Arrays.asList(indexList),
+                SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
+                rangeLabel
+        );
+
+        Paint lineFill = new Paint();
+        lineFill.setAlpha(200);
+        lineFill.setColor(Color.YELLOW);
+        //lineFill.setShader(new LinearGradient(0, 250, 0, 0, Color.WHITE, Color.YELLOW, Shader.TileMode.REPEAT));
+
+        seriesFormatter.setFillPaint(lineFill);
+        seriesFormatter.setInterpolationParams(
+                new CatmullRomInterpolator.Params(20, CatmullRomInterpolator.Type.Centripetal));
+        seriesFormatter.setPointLabeler(pointLabeler);
+        seriesFormatter.setPointLabelFormatter(new PointLabelFormatter(Color.WHITE));
+
+        Integer mins = (Integer) indexList[0];
+        Integer maxs = (Integer) indexList[0];
+        for (int i = 1; i < indexList.length; i++) {
+            if ((Integer) indexList[i] > maxs) maxs = (Integer) indexList[i];
+            if ((Integer) indexList[i] < mins) mins = (Integer) indexList[i];
+        }
+
+        maxs += 2;
+        mins -= 2;
+        if (mins < 0) mins = 0;
+        if (maxs < 13) maxs = 13;
+
+        plot.addSeries(series, seriesFormatter);
+        plot.setDomainLabel(domainLabel);
+        plot.setRangeLabel(rangeLabel);
+        plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new UVIFormat(domainLabels));
+        plot.setRangeBoundaries(mins, maxs, BoundaryMode.FIXED);
+        plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.LEFT).getPaint().setColor(Color.TRANSPARENT);
+        plot.getGraph().getDomainGridLinePaint().setColor(Color.TRANSPARENT);
+        plot.getGraph().getRangeGridLinePaint().setColor(Color.TRANSPARENT);
+    }
+
+    public void setPointLabeler(PointF point, XYPlot uviPlot, CustomPointLabeler uviPointLabeler) {
         if (point == null/* || !uviPlot.containsPoint(point.x, point.y)*/) {
             uviPointLabeler.labeledIndex = -1;
         } else {
@@ -263,5 +315,48 @@ public class MainActivity extends AppCompatActivity {
         }
 
         uviPlot.redraw();
+    }
+
+    public class PlotTouchListener implements View.OnTouchListener {
+        public XYPlot plot;
+        public CustomPointLabeler pointLabeler;
+
+        PlotTouchListener(XYPlot plot, CustomPointLabeler pointLabeler) {
+            this.plot = plot;
+            this.pointLabeler = pointLabeler;
+        }
+
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            switch (motionEvent.getAction() & MotionEvent.ACTION_MASK) {
+                case MotionEvent.ACTION_DOWN:
+                    setPointLabeler(new PointF(motionEvent.getX(), motionEvent.getY()), this.plot, this.pointLabeler);
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                    setPointLabeler(null, this.plot, this.pointLabeler);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    setPointLabeler(null, this.plot, this.pointLabeler);
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    setPointLabeler(new PointF(motionEvent.getX(), motionEvent.getY()), this.plot, this.pointLabeler);
+                    break;
+                case MotionEvent.ACTION_HOVER_ENTER:
+                    setPointLabeler(new PointF(motionEvent.getX(), motionEvent.getY()), this.plot, this.pointLabeler);
+                    break;
+                case MotionEvent.ACTION_HOVER_MOVE:
+                    setPointLabeler(new PointF(motionEvent.getX(), motionEvent.getY()), this.plot, this.pointLabeler);
+                    break;
+                case MotionEvent.ACTION_HOVER_EXIT:
+                    setPointLabeler(null, this.plot, this.pointLabeler);
+                    break;
+                default:
+                    //Toast.makeText(getApplicationContext(), "DEFAULT", Toast.LENGTH_SHORT).show();
+                    setPointLabeler(null, this.plot, this.pointLabeler);
+                    break;
+            }
+
+            return true;
+        }
     }
 }

@@ -6,6 +6,7 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ap_transparent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.pure.pure.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -77,24 +78,114 @@
 
             <android.support.v7.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/pollution_level"
+                android:id="@+id/psi_card"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:translationZ="0dp"
-                card_view:cardElevation="10dp"
+                card_view:cardElevation="5dp"
+                card_view:cardPreventCornerOverlap="false"
                 card_view:cardCornerRadius="5dp"
                 card_view:contentPadding="5dp"
                 android:layout_margin="5dp">
 
-                <TextView
-                    android:id="@+id/pollution_level_title"
+                <android.support.v7.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pollution Level"
-                    android:gravity="center_horizontal"
-                    android:background="@drawable/border_bottom"
-                    android:padding="10dp"/>
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/psi_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PSI"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/border_bottom"
+                        android:padding="10dp"/>
+
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@mipmap/sunny_icon">
+                        </ImageView>
+
+                        <Button
+                            android:id="@+id/psi_level"
+                            android:layout_height="70dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textSize="16sp"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="buttonText"/>
+                    </android.support.v7.widget.LinearLayoutCompat>
+
+                    <include layout="@layout/content_psi" />
+                </android.support.v7.widget.LinearLayoutCompat>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/pm25_card"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:translationZ="0dp"
+                card_view:cardElevation="5dp"
+                card_view:cardPreventCornerOverlap="false"
+                card_view:cardCornerRadius="5dp"
+                card_view:contentPadding="5dp"
+                android:layout_margin="5dp">
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/pm25_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="PM 2.5"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/border_bottom"
+                        android:padding="10dp"/>
+
+                    <android.support.v7.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@mipmap/sunny_icon">
+                        </ImageView>
+
+                        <Button
+                            android:id="@+id/pm25_level"
+                            android:layout_height="70dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:textSize="16sp"
+                            android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="buttonText"/>
+                    </android.support.v7.widget.LinearLayoutCompat>
+
+                    <include layout="@layout/content_pm25" />
+                </android.support.v7.widget.LinearLayoutCompat>
             </android.support.v7.widget.CardView>
         </android.support.v7.widget.LinearLayoutCompat>
     </android.support.v4.widget.NestedScrollView>
