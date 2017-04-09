@@ -38,16 +38,17 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/ap_transparent"
         sothree:umanoOverlay="false">
 
-        <FrameLayout
+        <!--<FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical">-->
 
             <include layout="@layout/content_main"/>
 
-        </FrameLayout>
+        <!--</FrameLayout>-->
 
         <!--<android.support.v7.widget.ContentFrameLayout
             android:layout_width="fill_parent"
