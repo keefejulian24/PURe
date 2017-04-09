@@ -92,8 +92,8 @@ public class MRTPageFragment extends Fragment {
                 TextView headerPark = (TextView) getView().findViewById(R.id.header_park);
                 headerPark.setVisibility(View.VISIBLE);
                 ListView parkList = (ListView) getView().findViewById(R.id.park_list);
-                parkList.clearFocus();
                 ArrayList<Park> parks = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(seekBar.getProgress()).getParks();
+                parkList.setItemChecked(-1, true);
                 if (parks != null) {
                     final ParkListAdapter adapter = new ParkListAdapter(getActivity().getBaseContext(), parks);
                     parkList.setAdapter(adapter);
