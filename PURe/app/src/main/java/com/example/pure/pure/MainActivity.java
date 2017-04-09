@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         /*CREATE UVI BUTTON*/
         final Button buttonUVI = (Button) findViewById(R.id.uvi_level);
         buttonUVI.setText("UVI: " + uviList[uviList.length >> 1]);
-
         buttonUVI.setOnClickListener(new View.OnClickListener() {
             LinearLayoutCompat uviMainContentLayout = (LinearLayoutCompat) findViewById(R.id.uvi_main_content);
             LinearLayoutCompat.LayoutParams uviMainContentLayoutParams = (LinearLayoutCompat.LayoutParams) uviMainContentLayout.getLayoutParams();
@@ -113,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
         /*CREATE PSI BUTTON*/
         final Button buttonPSI = (Button) findViewById(R.id.psi_level);
         buttonPSI.setText("PSI: " + psiList[psiList.length >> 1]);
-
         buttonPSI.setOnClickListener(new View.OnClickListener() {
             LinearLayoutCompat psiMainContentLayout = (LinearLayoutCompat) findViewById(R.id.psi_main_content);
             LinearLayoutCompat.LayoutParams psiMainContentLayoutParams = (LinearLayoutCompat.LayoutParams) psiMainContentLayout.getLayoutParams();
@@ -134,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
         /*CREATE PSI BUTTON*/
         final Button buttonPM25 = (Button) findViewById(R.id.pm25_level);
         buttonPM25.setText("PM 2.5: " + pm25List[pm25List.length >> 1]);
-
         buttonPM25.setOnClickListener(new View.OnClickListener() {
             LinearLayoutCompat pm25MainContentLayout = (LinearLayoutCompat) findViewById(R.id.pm25_main_content);
             LinearLayoutCompat.LayoutParams pm25MainContentLayoutParams = (LinearLayoutCompat.LayoutParams) pm25MainContentLayout.getLayoutParams();
@@ -269,15 +266,20 @@ public class MainActivity extends AppCompatActivity {
             if ((Integer) indexList[i] < mins) mins = (Integer) indexList[i];
         }
 
-        maxs += 2;
-        mins -= 2;
+        int length = maxs - mins;
+        if (length / 7 > 2) {
+            maxs += length / 7;
+            mins -= length / 7;
+        } else {
+            maxs += 2;
+            mins -= 2;
+        }
         if (mins < 0) mins = 0;
-        if (maxs < 13) maxs = 13;
 
         plot.addSeries(series, seriesFormatter);
         plot.setDomainLabel(domainLabel);
         plot.setRangeLabel(rangeLabel);
-        plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new UVIFormat(domainLabels));
+        plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.BOTTOM).setFormat(new CustomFormat(domainLabels));
         plot.setRangeBoundaries(mins, maxs, BoundaryMode.FIXED);
         plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.LEFT).getPaint().setColor(Color.TRANSPARENT);
         plot.getGraph().getDomainGridLinePaint().setColor(Color.TRANSPARENT);
