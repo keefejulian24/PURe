@@ -1,0 +1,1285 @@
+{
+  "mrtLines": [
+    {
+      "color": "red",
+      "mrtStations": [
+        {
+          "location": {
+            "latitude": 1.333415,
+            "longitude": 103.742119
+          },
+          "name": "Jurong East"
+        },
+        {
+          "location": {
+            "latitude": 1.349073,
+            "longitude": 103.749664
+          },
+          "name": "Bukit Batok"
+        },
+        {
+          "location": {
+            "latitude": 1.358702,
+            "longitude": 103.751787
+          },
+          "name": "Bukit Gombak"
+        },
+        {
+          "location": {
+            "latitude": 1.385092,
+            "longitude": 103.744322
+          },
+          "name": "Choa Chu Kang",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.388497,
+                "longitude": 103.746868
+              },
+              "name": "Choa Chu Kang Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.396986,
+            "longitude": 103.747239
+          },
+          "name": "Yew Tee"
+        },
+        {
+          "location": {
+            "latitude": 1.425047,
+            "longitude": 103.761853
+          },
+          "name": "Kranji"
+        },
+        {
+          "location": {
+            "latitude": 1.432636,
+            "longitude": 103.774283
+          },
+          "name": "Marsiling",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.4381215,
+                "longitude": 103.7705687
+              },
+              "name": "Woodlands Town Garden",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.437094,
+            "longitude": 103.786483
+          },
+          "name": "Woodlands"
+        },
+        {
+          "location": {
+            "latitude": 1.440689,
+            "longitude": 103.800933
+          },
+          "name": "Admiralty"
+        },
+        {
+          "location": {
+            "latitude": 1.449025,
+            "longitude": 103.820153
+          },
+          "name": "Sembawang",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.461047,
+                "longitude": 103.836522
+              },
+              "name": "Sembawang Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.429464,
+            "longitude": 103.835239
+          },
+          "name": "Yishun"
+        },
+        {
+          "location": {
+            "latitude": 1.417167,
+            "longitude": 103.8329
+          },
+          "name": "Khatib"
+        },
+        {
+          "location": {
+            "latitude": 1.381906,
+            "longitude": 103.844817
+          },
+          "name": "Yio Chu Kang"
+        },
+        {
+          "location": {
+            "latitude": 1.370017,
+            "longitude": 103.84945
+          },
+          "name": "Ang Mo Kio",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3707346,
+                "longitude": 103.8502485
+              },
+              "name": "Ang Mo Kio Garden East",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.3745852,
+                "longitude": 103.8433641
+              },
+              "name": "Ang Mo Kio Garden West",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.366667,
+                "longitude": 103.833333
+              },
+              "name": "Bishan-Ang Mo Kio Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.351236,
+            "longitude": 103.848456
+          },
+          "name": "Bishan",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.366667,
+                "longitude": 103.833333
+              },
+              "name": "Bishan-Ang Mo Kio Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.340339,
+            "longitude": 103.846725
+          },
+          "name": "Braddell"
+        },
+        {
+          "location": {
+            "latitude": 1.332703,
+            "longitude": 103.847808
+          },
+          "name": "Toa Payoh",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3307585,
+                "longitude": 103.8471768
+              },
+              "name": "Toa Payoh Town Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.320394,
+            "longitude": 103.843689
+          },
+          "name": "Novena"
+        },
+        {
+          "location": {
+            "latitude": 1.312956,
+            "longitude": 103.838442
+          },
+          "name": "Newton"
+        },
+        {
+          "location": {
+            "latitude": 1.304314,
+            "longitude": 103.831939
+          },
+          "name": "Orchard"
+        },
+        {
+          "location": {
+            "latitude": 1.300514,
+            "longitude": 103.839028
+          },
+          "name": "Somerset"
+        },
+        {
+          "location": {
+            "latitude": 1.299156,
+            "longitude": 103.845736
+          },
+          "name": "Dhoby Ghaut",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.298611,
+                "longitude": 103.845
+              },
+              "name": "Dhoby Ghaut Green",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.294444,
+                "longitude": 103.846944
+              },
+              "name": "Fort Canning",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.299281,
+                "longitude": 103.843783
+              },
+              "name": "Istana Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.293239,
+            "longitude": 103.852219
+          },
+          "name": "City Hall"
+        },
+        {
+          "location": {
+            "latitude": 1.283881,
+            "longitude": 103.851533
+          },
+          "name": "Raffles Place",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.283881,
+                "longitude": 103.851533
+              },
+              "name": "Raffles Place Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.276097,
+            "longitude": 103.854675
+          },
+          "name": "Marina Bay"
+        },
+        {
+          "location": {
+            "latitude": 1.270958,
+            "longitude": 103.863242
+          },
+          "name": "Marina South Pier"
+        }
+      ],
+      "name": "North South Line"
+    },
+    {
+      "color": "purple",
+      "mrtStations": [
+        {
+          "location": {
+            "latitude": 1.265297,
+            "longitude": 103.82225
+          },
+          "name": "HarbourFront"
+        },
+        {
+          "location": {
+            "latitude": 1.280225,
+            "longitude": 103.839486
+          },
+          "name": "Outram Park",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.2845,
+                "longitude": 103.8395
+              },
+              "name": "Pearl's Hill City Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.28485,
+            "longitude": 103.844006
+          },
+          "name": "Chinatown"
+        },
+        {
+          "location": {
+            "latitude": 1.288708,
+            "longitude": 103.846606
+          },
+          "name": "Clarke Quay",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.286592,
+                "longitude": 103.846394
+              },
+              "name": "Hong Lim Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.299156,
+            "longitude": 103.845736
+          },
+          "name": "Dhoby Ghaut",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.298611,
+                "longitude": 103.845
+              },
+              "name": "Dhoby Ghaut Green",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.294444,
+                "longitude": 103.846944
+              },
+              "name": "Fort Canning",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.299281,
+                "longitude": 103.843783
+              },
+              "name": "Istana Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.306725,
+            "longitude": 103.849175
+          },
+          "name": "Little India"
+        },
+        {
+          "location": {
+            "latitude": 1.312314,
+            "longitude": 103.854028
+          },
+          "name": "Farrer Park"
+        },
+        {
+          "location": {
+            "latitude": 1.319483,
+            "longitude": 103.861722
+          },
+          "name": "Boon Keng"
+        },
+        {
+          "location": {
+            "latitude": 1.331161,
+            "longitude": 103.869058
+          },
+          "name": "Potong Pasir"
+        },
+        {
+          "location": {
+            "latitude": 1.339181,
+            "longitude": 103.870744
+          },
+          "name": "Woodleigh"
+        },
+        {
+          "location": {
+            "latitude": 1.349944,
+            "longitude": 103.873092
+          },
+          "name": "Serangoon"
+        },
+        {
+          "location": {
+            "latitude": 1.360214,
+            "longitude": 103.884864
+          },
+          "name": "Kovan"
+        },
+        {
+          "location": {
+            "latitude": 1.371292,
+            "longitude": 103.892161
+          },
+          "name": "Hougang",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3769623,
+                "longitude": 103.8985194
+              },
+              "name": "Punggol Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.382728,
+            "longitude": 103.892789
+          },
+          "name": "Buangkok"
+        },
+        {
+          "location": {
+            "latitude": 1.391653,
+            "longitude": 103.895133
+          },
+          "name": "Sengkang"
+        },
+        {
+          "location": {
+            "latitude": 1.405264,
+            "longitude": 103.902097
+          },
+          "name": "Punggol"
+        }
+      ],
+      "name": "North East Line"
+    },
+    {
+      "color": "green",
+      "mrtStations": [
+        {
+          "location": {
+            "latitude": 1.372411,
+            "longitude": 103.949369
+          },
+          "name": "Pasir Ris",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.381483,
+                "longitude": 103.9509
+              },
+              "name": "Pasir Ris Park",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.3736043,
+                "longitude": 103.9522005
+              },
+              "name": "Pasir Ris Town Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.352528,
+            "longitude": 103.945322
+          },
+          "name": "Tampines",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3573421,
+                "longitude": 103.943754
+              },
+              "name": "Sun Plaza Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.343444,
+            "longitude": 103.953172
+          },
+          "name": "Simei"
+        },
+        {
+          "location": {
+            "latitude": 1.327358,
+            "longitude": 103.946344
+          },
+          "name": "Tanah Merah"
+        },
+        {
+          "location": {
+            "latitude": 1.324039,
+            "longitude": 103.930036
+          },
+          "name": "Bedok",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.303956,
+                "longitude": 103.926373
+              },
+              "name": "East Coast Park",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.333333,
+                "longitude": 103.933333
+              },
+              "name": "Bedok Town Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.320983,
+            "longitude": 103.912842
+          },
+          "name": "Kembangan"
+        },
+        {
+          "location": {
+            "latitude": 1.319725,
+            "longitude": 103.903108
+          },
+          "name": "Eunos"
+        },
+        {
+          "location": {
+            "latitude": 1.317767,
+            "longitude": 103.892381
+          },
+          "name": "Paya Lebar"
+        },
+        {
+          "location": {
+            "latitude": 1.316442,
+            "longitude": 103.882981
+          },
+          "name": "Aljunied"
+        },
+        {
+          "location": {
+            "latitude": 1.311469,
+            "longitude": 103.8714
+          },
+          "name": "Kallang"
+        },
+        {
+          "location": {
+            "latitude": 1.307167,
+            "longitude": 103.863008
+          },
+          "name": "Lavender"
+        },
+        {
+          "location": {
+            "latitude": 1.300194,
+            "longitude": 103.85615
+          },
+          "name": "Bugis"
+        },
+        {
+          "location": {
+            "latitude": 1.293239,
+            "longitude": 103.852219
+          },
+          "name": "City Hall"
+        },
+        {
+          "location": {
+            "latitude": 1.283881,
+            "longitude": 103.851533
+          },
+          "name": "Raffles Place",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.283881,
+                "longitude": 103.851533
+              },
+              "name": "Raffles Place Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.276439,
+            "longitude": 103.845711
+          },
+          "name": "Tanjong Pagar",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.276439,
+                "longitude": 103.845711
+              },
+              "name": "Tanjong Pagar RICOH Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.280225,
+            "longitude": 103.839486
+          },
+          "name": "Outram Park",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.2845,
+                "longitude": 103.8395
+              },
+              "name": "Pearl's Hill City Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.286081,
+            "longitude": 103.826958
+          },
+          "name": "Tiong Bahru",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.2862251,
+                "longitude": 103.8248456
+              },
+              "name": "Tiong Bahru Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.289733,
+            "longitude": 103.81675
+          },
+          "name": "Redhill"
+        },
+        {
+          "location": {
+            "latitude": 1.294442,
+            "longitude": 103.806114
+          },
+          "name": "Queenstown"
+        },
+        {
+          "location": {
+            "latitude": 1.302558,
+            "longitude": 103.798225
+          },
+          "name": "Commonwealth"
+        },
+        {
+          "location": {
+            "latitude": 1.306817,
+            "longitude": 103.790428
+          },
+          "name": "Buona Vista"
+        },
+        {
+          "location": {
+            "latitude": 1.311314,
+            "longitude": 103.778658
+          },
+          "name": "Dover"
+        },
+        {
+          "location": {
+            "latitude": 1.315303,
+            "longitude": 103.765244
+          },
+          "name": "Clementi",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3018597,
+                "longitude": 103.7661558
+              },
+              "name": "Clementi Woods Park",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.2918978,
+                "longitude": 103.7657869
+              },
+              "name": "West Coast Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.333415,
+            "longitude": 103.742119
+          },
+          "name": "Jurong East"
+        },
+        {
+          "location": {
+            "latitude": 1.342711,
+            "longitude": 103.732467
+          },
+          "name": "Chinese Garden"
+        },
+        {
+          "location": {
+            "latitude": 1.344589,
+            "longitude": 103.721139
+          },
+          "name": "Lakeside"
+        },
+        {
+          "location": {
+            "latitude": 1.338883,
+            "longitude": 103.706208
+          },
+          "name": "Boon Lay",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3381428,
+                "longitude": 103.7078091
+              },
+              "name": "Jurong Central Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.337578,
+            "longitude": 103.697217
+          },
+          "name": "Pioneer"
+        },
+        {
+          "location": {
+            "latitude": 1.327739,
+            "longitude": 103.678486
+          },
+          "name": "Joo Koon"
+        }
+      ],
+      "name": "East West Line"
+    },
+    {
+      "color": "yellow",
+      "mrtStations": [
+        {
+          "location": {
+            "latitude": 1.299156,
+            "longitude": 103.845736
+          },
+          "name": "Dhoby Ghaut",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.298611,
+                "longitude": 103.845
+              },
+              "name": "Dhoby Ghaut Green",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.294444,
+                "longitude": 103.846944
+              },
+              "name": "Fort Canning",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.299281,
+                "longitude": 103.843783
+              },
+              "name": "Istana Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.296931,
+            "longitude": 103.850631
+          },
+          "name": "Bras Basah"
+        },
+        {
+          "location": {
+            "latitude": 1.293436,
+            "longitude": 103.855381
+          },
+          "name": "Esplanade",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.289903,
+                "longitude": 103.8537
+              },
+              "name": "Esplanade Park",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.292917,
+                "longitude": 103.854833
+              },
+              "name": "War Memorial Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.293131,
+            "longitude": 103.861064
+          },
+          "name": "Promenade",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.2895303,
+                "longitude": 103.8615358
+              },
+              "name": "Youth Olympic Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.299697,
+            "longitude": 103.863611
+          },
+          "name": "Nicoll Highway"
+        },
+        {
+          "location": {
+            "latitude": 1.302856,
+            "longitude": 103.875306
+          },
+          "name": "Stadium"
+        },
+        {
+          "location": {
+            "latitude": 1.306306,
+            "longitude": 103.882531
+          },
+          "name": "Mountbatten"
+        },
+        {
+          "location": {
+            "latitude": 1.308289,
+            "longitude": 103.888253
+          },
+          "name": "Dakota"
+        },
+        {
+          "location": {
+            "latitude": 1.317767,
+            "longitude": 103.892381
+          },
+          "name": "Paya Lebar"
+        },
+        {
+          "location": {
+            "latitude": 1.32665,
+            "longitude": 103.890019
+          },
+          "name": "MacPherson"
+        },
+        {
+          "location": {
+            "latitude": 1.335833,
+            "longitude": 103.887942
+          },
+          "name": "Tai Seng"
+        },
+        {
+          "location": {
+            "latitude": 1.342756,
+            "longitude": 103.879697
+          },
+          "name": "Bartley"
+        },
+        {
+          "location": {
+            "latitude": 1.349944,
+            "longitude": 103.873092
+          },
+          "name": "Serangoon"
+        },
+        {
+          "location": {
+            "latitude": 1.351636,
+            "longitude": 103.864064
+          },
+          "name": "Lorong Chuan"
+        },
+        {
+          "location": {
+            "latitude": 1.351236,
+            "longitude": 103.848456
+          },
+          "name": "Bishan",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.366667,
+                "longitude": 103.833333
+              },
+              "name": "Bishan-Ang Mo Kio Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.349078,
+            "longitude": 103.839492
+          },
+          "name": "Marymount"
+        },
+        {
+          "location": {
+            "latitude": 1.337761,
+            "longitude": 103.839447
+          },
+          "name": "Caldecott"
+        },
+        {
+          "location": {
+            "latitude": 1.322519,
+            "longitude": 103.815406
+          },
+          "name": "Botanic Gardens"
+        },
+        {
+          "location": {
+            "latitude": 1.317319,
+            "longitude": 103.807431
+          },
+          "name": "Farrer Road"
+        },
+        {
+          "location": {
+            "latitude": 1.312078,
+            "longitude": 103.796208
+          },
+          "name": "Holland Village"
+        },
+        {
+          "location": {
+            "latitude": 1.306817,
+            "longitude": 103.790428
+          },
+          "name": "Buona Vista"
+        },
+        {
+          "location": {
+            "latitude": 1.299331,
+            "longitude": 103.787067
+          },
+          "name": "one-north",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.3025098,
+                "longitude": 103.7880484
+              },
+              "name": "one-north Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.293383,
+            "longitude": 103.784394
+          },
+          "name": "Kent Ridge",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.283758,
+                "longitude": 103.79055
+              },
+              "name": "Kent Ridge Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.282386,
+            "longitude": 103.781867
+          },
+          "name": "Haw Par Villa"
+        },
+        {
+          "location": {
+            "latitude": 1.276167,
+            "longitude": 103.791358
+          },
+          "name": "Pasir Panjang",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.2795115,
+                "longitude": 103.7977033
+              },
+              "name": "HortPark",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.272267,
+            "longitude": 103.802908
+          },
+          "name": "Labrador Park",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.267222,
+                "longitude": 103.801667
+              },
+              "name": "Labrador Natural Reserve",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.2801016,
+                "longitude": 103.8029949
+              },
+              "name": "The Southern Ridges",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.270572,
+            "longitude": 103.809678
+          },
+          "name": "Telok Blangah",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.2737864,
+                "longitude": 103.8174964
+              },
+              "name": "Mount Faber Park",
+              "walkingDistance": 0
+            },
+            {
+              "location": {
+                "latitude": 1.278892,
+                "longitude": 103.810508
+              },
+              "name": "Telok Blangah Hill Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.265297,
+            "longitude": 103.82225
+          },
+          "name": "HarbourFront"
+        }
+      ],
+      "name": "Circle Line"
+    },
+    {
+      "color": "blue",
+      "mrtStations": [
+        {
+          "location": {
+            "latitude": 1.378436,
+            "longitude": 103.761767
+          },
+          "name": "Bukit Panjang"
+        },
+        {
+          "location": {
+            "latitude": 1.368975,
+            "longitude": 103.764803
+          },
+          "name": "Cashew"
+        },
+        {
+          "location": {
+            "latitude": 1.362472,
+            "longitude": 103.767389
+          },
+          "name": "Hillview"
+        },
+        {
+          "location": {
+            "latitude": 1.341133,
+            "longitude": 103.775797
+          },
+          "name": "Beauty World"
+        },
+        {
+          "location": {
+            "latitude": 1.335628,
+            "longitude": 103.783983
+          },
+          "name": "King Albert Park"
+        },
+        {
+          "location": {
+            "latitude": 1.330714,
+            "longitude": 103.797633
+          },
+          "name": "Sixth Avenue"
+        },
+        {
+          "location": {
+            "latitude": 1.326039,
+            "longitude": 103.807169
+          },
+          "name": "Tan Kah Kee"
+        },
+        {
+          "location": {
+            "latitude": 1.322519,
+            "longitude": 103.815406
+          },
+          "name": "Botanic Gardens"
+        },
+        {
+          "location": {
+            "latitude": 1.320069,
+            "longitude": 103.825997
+          },
+          "name": "Stevens"
+        },
+        {
+          "location": {
+            "latitude": 1.312956,
+            "longitude": 103.838442
+          },
+          "name": "Newton"
+        },
+        {
+          "location": {
+            "latitude": 1.306725,
+            "longitude": 103.849175
+          },
+          "name": "Little India"
+        },
+        {
+          "location": {
+            "latitude": 1.303764,
+            "longitude": 103.852581
+          },
+          "name": "Rochor"
+        },
+        {
+          "location": {
+            "latitude": 1.300194,
+            "longitude": 103.85615
+          },
+          "name": "Bugis"
+        },
+        {
+          "location": {
+            "latitude": 1.293131,
+            "longitude": 103.861064
+          },
+          "name": "Promenade",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.2895303,
+                "longitude": 103.8615358
+              },
+              "name": "Youth Olympic Park",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.282347,
+            "longitude": 103.859317
+          },
+          "name": "Bayfront",
+          "parks": [
+            {
+              "location": {
+                "latitude": 1.284714,
+                "longitude": 103.864961
+              },
+              "name": "Gardens by the Bay",
+              "walkingDistance": 0
+            }
+          ]
+        },
+        {
+          "location": {
+            "latitude": 1.279458,
+            "longitude": 103.852931
+          },
+          "name": "Downtown"
+        },
+        {
+          "location": {
+            "latitude": 1.282125,
+            "longitude": 103.848472
+          },
+          "name": "Telok Ayer"
+        },
+        {
+          "location": {
+            "latitude": 1.28485,
+            "longitude": 103.844006
+          },
+          "name": "Chinatown"
+        }
+      ],
+      "name": "Downtown Line"
+    }
+  ]
+}
