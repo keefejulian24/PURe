@@ -2,11 +2,14 @@ package com.example.pure.pure;
 
 import android.os.Bundle;
 import android.graphics.*;
+import android.provider.ContactsContract;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.CardView;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
@@ -25,24 +28,32 @@ import com.androidplot.Region;
 import com.astuetz.PagerSlidingTabStrip;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    private XYPlot uviPlot;
-    private XYPlot psiPlot;
-    private XYPlot pm25Plot;
-    public Number[] domainLabels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-    public Number[] uviList = {0, 2, 5, 6, 10, 9, 11, 8, 1, 1, 0};
-    public Number[] psiList = {55, 54, 54, 55, 55, 55, 55, 56, 56, 57, 57};
-    public Number[] pm25List = {16, 11, 4, 38, 30, 9, 9, 43, 30, 21, 21};
-    public LineAndPointFormatter uviSeriesFormatter = null;
-    public LineAndPointFormatter psiSeriesFormatter = null;
-    public LineAndPointFormatter pm25SeriesFormatter = null;
-    public CustomPointLabeler uviPointLabeler = null;
-    public CustomPointLabeler psiPointLabeler = null;
-    public CustomPointLabeler pm25PointLabeler = null;
+    public static XYPlot uviPlot;
+    public static XYPlot psiPlot;
+    public static XYPlot pm25Plot;
+
+    public static Number[] uviDomainLabels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+    public static Number[] psiDomainLabels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+    public static Number[] pm25DomainLabels = {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+
+    public static Number[] uviList = {0, 2, 5, 6, 10, 9, 11, 8, 1, 1, 0};
+    public static Number[] psiList = {55, 54, 54, 55, 55, 55, 55, 56, 56, 57, 57};
+    public static Number[] pm25List = {16, 11, 4, 38, 30, 9, 9, 43, 30, 21, 21};
+
+    public static LineAndPointFormatter uviSeriesFormatter = null;
+    public static LineAndPointFormatter psiSeriesFormatter = null;
+    public static LineAndPointFormatter pm25SeriesFormatter = null;
+
+    public static CustomPointLabeler uviPointLabeler = null;
+    public static CustomPointLabeler psiPointLabeler = null;
+    public static CustomPointLabeler pm25PointLabeler = null;
 
     public static double locationLat;
     public static double locationLng;
@@ -62,39 +73,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*CREATE UVI PLOT*/
-        uviPlot = (XYPlot) findViewById(R.id.uvi_plot);
-        uviSeriesFormatter = new LineAndPointFormatter();
-        uviPointLabeler = new CustomPointLabeler(-1);
-        createPlot(uviPlot, uviSeriesFormatter, uviPointLabeler, domainLabels, uviList, "time", "uv-index");
-
-        ((CardView) findViewById(R.id.weather_card))/*uviPlot*/.setOnTouchListener(new PlotTouchListener(
-                uviPlot,
-                uviPointLabeler
-        ));
-
-        /*CREATE PSI PLOT*/
-        psiPlot = (XYPlot) findViewById(R.id.psi_plot);
-        psiSeriesFormatter = new LineAndPointFormatter();
-        psiPointLabeler = new CustomPointLabeler(-1);
-        createPlot(psiPlot, psiSeriesFormatter, psiPointLabeler, domainLabels, psiList, "time", "psi");
-        ((CardView) findViewById(R.id.psi_card)).setOnTouchListener(new PlotTouchListener(
-                psiPlot,
-                psiPointLabeler
-        ));
-
-        /*CREATE PM25 PLOT*/
-        pm25Plot = (XYPlot) findViewById(R.id.pm25_plot);
-        pm25SeriesFormatter = new LineAndPointFormatter();
-        pm25PointLabeler = new CustomPointLabeler(-1);
-        createPlot(pm25Plot, pm25SeriesFormatter, pm25PointLabeler, domainLabels, pm25List, "time", "pm 2.5 index");
-        ((CardView) findViewById(R.id.pm25_card)).setOnTouchListener(new PlotTouchListener(
-                pm25Plot,
-                pm25PointLabeler
-        ));
-
         /*CREATE UVI BUTTON*/
-        final Button buttonUVI = (Button) findViewById(R.id.uvi_level);
+        Button buttonUVI = (Button) findViewById(R.id.uvi_level);
         buttonUVI.setText("UVI: " + uviList[uviList.length >> 1]);
         buttonUVI.setOnClickListener(new View.OnClickListener() {
             LinearLayoutCompat uviMainContentLayout = (LinearLayoutCompat) findViewById(R.id.uvi_main_content);
@@ -114,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /*CREATE PSI BUTTON*/
-        final Button buttonPSI = (Button) findViewById(R.id.psi_level);
+        Button buttonPSI = (Button) findViewById(R.id.psi_level);
         buttonPSI.setText("PSI: " + psiList[psiList.length >> 1]);
         buttonPSI.setOnClickListener(new View.OnClickListener() {
             LinearLayoutCompat psiMainContentLayout = (LinearLayoutCompat) findViewById(R.id.psi_main_content);
@@ -133,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*CREATE PSI BUTTON*/
-        final Button buttonPM25 = (Button) findViewById(R.id.pm25_level);
+        /*CREATE PM25 BUTTON*/
+        Button buttonPM25 = (Button) findViewById(R.id.pm25_level);
         buttonPM25.setText("PM 2.5: " + pm25List[pm25List.length >> 1]);
         buttonPM25.setOnClickListener(new View.OnClickListener() {
             LinearLayoutCompat pm25MainContentLayout = (LinearLayoutCompat) findViewById(R.id.pm25_main_content);
@@ -152,6 +132,37 @@ public class MainActivity extends AppCompatActivity {
                 v.requestLayout();
             }
         });
+
+        /*CREATE UVI PLOT*/
+        uviPlot = (XYPlot) findViewById(R.id.uvi_plot);
+        uviSeriesFormatter = new LineAndPointFormatter();
+        uviPointLabeler = new CustomPointLabeler(-1);
+        createPlot(uviPlot, uviSeriesFormatter, uviPointLabeler, uviDomainLabels, uviList, "time", "uv-index");
+
+        /*((CardView) findViewById(R.id.weather_card))*/uviPlot.setOnTouchListener(new PlotTouchListener(
+                uviPlot,
+                uviPointLabeler
+        ));
+
+        /*CREATE PSI PLOT*/
+        psiPlot = (XYPlot) findViewById(R.id.psi_plot);
+        psiSeriesFormatter = new LineAndPointFormatter();
+        psiPointLabeler = new CustomPointLabeler(-1);
+        createPlot(psiPlot, psiSeriesFormatter, psiPointLabeler, psiDomainLabels, psiList, "time", "psi");
+        /*((CardView) findViewById(R.id.psi_card))*/psiPlot.setOnTouchListener(new PlotTouchListener(
+                psiPlot,
+                psiPointLabeler
+        ));
+
+        /*CREATE PM25 PLOT*/
+        pm25Plot = (XYPlot) findViewById(R.id.pm25_plot);
+        pm25SeriesFormatter = new LineAndPointFormatter();
+        pm25PointLabeler = new CustomPointLabeler(-1);
+        createPlot(pm25Plot, pm25SeriesFormatter, pm25PointLabeler, pm25DomainLabels, pm25List, "time", "pm 2.5 index");
+        /*((CardView) findViewById(R.id.pm25_card))*/pm25Plot.setOnTouchListener(new PlotTouchListener(
+                pm25Plot,
+                pm25PointLabeler
+        ));
 
         /*CREATE LOCATION PAGER*/
         ViewPager locationPager = (ViewPager) findViewById(R.id.location_pager);
@@ -177,6 +188,31 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.action_refresh) {
+            // refresh data
+            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            //String currentDateandTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+            Log.d("TIME NOW:", "" + parser.format(new Date(System.currentTimeMillis() + 0 * 1000 * 60 * 60 * 5)));
+            Log.d("TIME - 5 HOURS:", "" + parser.format(new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6)));
+            Log.d("TIME + 5 HOURS:", "" + parser.format(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5)));
+            //Log.d("SECOND:", "" + Calendar.getInstance().get(Calendar.SECOND));
+
+            try {
+                new DatabaseManager(this).query(
+                        new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
+                        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
+                        DatabaseManager.UVI,
+                        DatabaseManager.NATIONAL
+                );
+
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+            return true;
+        }
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -185,8 +221,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void createPlot(XYPlot plot, LineAndPointFormatter seriesFormatter, CustomPointLabeler pointLabeler,
+    public static void createPlot(XYPlot plot, LineAndPointFormatter seriesFormatter, CustomPointLabeler pointLabeler,
                             Number[] domainLabels, Number[] indexList, String domainLabel, String rangeLabel) {
+        plot.clear();
+
         XYSeries series = new SimpleXYSeries(
                 Arrays.asList(indexList),
                 SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
@@ -229,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
         plot.getGraph().getLineLabelStyle(XYGraphWidget.Edge.LEFT).getPaint().setColor(Color.TRANSPARENT);
         plot.getGraph().getDomainGridLinePaint().setColor(Color.TRANSPARENT);
         plot.getGraph().getRangeGridLinePaint().setColor(Color.TRANSPARENT);
+        plot.redraw();
     }
 
     public void setPointLabeler(PointF point, XYPlot uviPlot, CustomPointLabeler uviPointLabeler) {

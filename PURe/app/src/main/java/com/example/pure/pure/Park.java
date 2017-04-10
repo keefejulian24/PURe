@@ -20,7 +20,6 @@ public class Park extends Location {
 
     public static double calculateDistance(LatLng location) {
         // Calculate distance from current location
-        
         return 0;
     }
 }
