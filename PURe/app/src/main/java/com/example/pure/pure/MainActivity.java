@@ -158,65 +158,6 @@ public class MainActivity extends AppCompatActivity {
         locationPager.setAdapter(new LocationFragmentPagerAdapter(getSupportFragmentManager()));
         PagerSlidingTabStrip locationTabsStrip = (PagerSlidingTabStrip) findViewById(R.id.location_tab);
         locationTabsStrip.setViewPager(locationPager);
-        locationTabsStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (position != 1) return;
-                /*CREATE MRT PAGER*/
-                ViewPager mrtPager = (ViewPager) findViewById(R.id.mrt_pager);
-                mrtPager.setAdapter(new MRTFragmentPagerAdapter(getSupportFragmentManager()));
-                final PagerSlidingTabStrip mrtTabsStrip = (PagerSlidingTabStrip) findViewById(R.id.mrt_tab);
-                mrtTabsStrip.setViewPager(mrtPager);
-                mrtTabsStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                    @Override
-                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                        mrtTabsStrip.setIndicatorColor(getNewColor(position, positionOffset));
-                    }
-
-                    @Override
-                    public void onPageSelected(int position) {
-                        mrtTabsStrip.setIndicatorColor(mrtTabsColor[position]);
-
-                        //Toast.makeText(getApplicationContext(), mrtTabsStrip.getIndicatorColor(), Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int state) {
-
-                    }
-
-                    private int getNewColor(int position, float offset) {
-                        int next;
-                        if (offset > 0) next = (position < 5) ? position + 1 : position;
-                        else next = (position > 0) ? position - 1 : 0;
-                        return blendColors(mrtTabsColor[next], mrtTabsColor[position], offset);
-                    }
-
-                    private int blendColors(int color1, int color2, float ratio) {
-                        final float inverseRation = 1f - ratio;
-                        float a = (Color.alpha(color1) * ratio) + (Color.alpha(color2) * inverseRation);
-                        float r = (Color.red  (color1) * ratio) + (Color.red  (color2) * inverseRation);
-                        float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRation);
-                        float b = (Color.blue (color1) * ratio) + (Color.blue (color2) * inverseRation);
-                        return Color.argb((int) a, (int) r, (int) g, (int) b);
-                    }
-
-                });
-
-                for (int i = 0; i < 5; i++)
-                    ((TextView) ((LinearLayout) mrtTabsStrip.getChildAt(0)).getChildAt(i)).setTextColor(mrtTabsColor[i]);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
         for (int i = 0; i < 2; i++)
             ((TextView) ((LinearLayout) locationTabsStrip.getChildAt(0)).getChildAt(i)).setTextColor(Color.WHITE);
