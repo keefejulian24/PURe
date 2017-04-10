@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.google.gson.Gson;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -119,10 +120,15 @@ public class MRTPageFragment extends Fragment {
             public void onClick(View view) {
                 ListView parkList = (ListView) getView().findViewById(R.id.park_list);
                 DiscreteSeekBar mrtSeekBar = (DiscreteSeekBar) getView().findViewById(R.id.mrt_seek_bar);
-                if (parkList.getCheckedItemPosition() != -1)
-                    Toast.makeText(getActivity().getApplicationContext(), Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().latitude) + ", " + Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().longitude), Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getActivity().getApplicationContext(), Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().latitude) + ", " + Double.toString(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().longitude), Toast.LENGTH_SHORT).show();
+                if (parkList.getCheckedItemPosition() != -1) {
+                    MainActivity.locationLat = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().latitude;
+                    MainActivity.locationLng = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().longitude;
+                }
+                else {
+                    MainActivity.locationLat = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().latitude;
+                    MainActivity.locationLng = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().longitude;
+                }
+                Toast.makeText(getActivity().getApplicationContext(), Double.toString(MainActivity.locationLat) + ", " + Double.toString(MainActivity.locationLng), Toast.LENGTH_SHORT).show();
             }
         });
     }

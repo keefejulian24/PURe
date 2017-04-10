@@ -23,6 +23,7 @@ import com.androidplot.xy.XYSeries;
 import com.androidplot.xy.*;
 import com.androidplot.Region;
 import com.astuetz.PagerSlidingTabStrip;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.*;
 
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     public CustomPointLabeler uviPointLabeler = null;
     public CustomPointLabeler psiPointLabeler = null;
     public CustomPointLabeler pm25PointLabeler = null;
+
+    public static double locationLat;
+    public static double locationLng;
 
     public static int[] mrtTabsColor = new int[]{
             Color.RED,
