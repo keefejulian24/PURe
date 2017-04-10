@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.pure.pure.MainActivity">
+
+    <TextView
+        android:id="@+id/header_mrt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Select MRT Station"
+        android:textSize="20sp" />
+
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+        android:id="@+id/mrt_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_mrt"
+        app:dsb_scrubberHeight="5dp"
+        app:dsb_trackHeight="5dp"
+        app:dsb_thumbSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/mrt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mrt_seek_bar"
+        android:layout_centerHorizontal="true"
+        android:text="Slide to select MRT station" />
+
+    <TextView
+        android:id="@+id/header_park"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/mrt_name"
+        android:layout_marginTop="10dp"
+        android:text="Select Park"
+        android:textSize="20sp"
+        android:visibility="invisible"/>
+
+    <ListView
+        android:id="@+id/park_list"
+        android:choiceMode="singleChoice"
+        android:listSelector="@android:color/darker_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_park"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/set_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Set Location"/>
+
+</RelativeLayout>
