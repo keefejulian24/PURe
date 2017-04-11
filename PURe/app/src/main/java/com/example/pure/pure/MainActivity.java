@@ -200,18 +200,32 @@ public class MainActivity extends AppCompatActivity {
             // refresh data
             SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-            //String currentDateandTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             Log.d("TIME NOW:", "" + parser.format(new Date(System.currentTimeMillis() + 0 * 1000 * 60 * 60 * 5)));
-            Log.d("TIME - 5 HOURS:", "" + parser.format(new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6)));
+            Log.d("TIME - 6 HOURS:", "" + parser.format(new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6)));
             Log.d("TIME + 5 HOURS:", "" + parser.format(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5)));
-            //Log.d("SECOND:", "" + Calendar.getInstance().get(Calendar.SECOND));
+
+            int nearestRegion = new DatabaseManager(this).getNearestRegion(locationLat, locationLng);
 
             try {
                 new DatabaseManager(this).query(
                         new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
                         new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
                         DatabaseManager.UVI,
-                        DatabaseManager.NATIONAL
+                        nearestRegion
+                );
+
+                new DatabaseManager(this).query(
+                        new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
+                        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
+                        DatabaseManager.PSI,
+                        nearestRegion
+                );
+
+                new DatabaseManager(this).query(
+                        new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
+                        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
+                        DatabaseManager.PM25,
+                        nearestRegion
                 );
 
             } catch (Exception e) {
@@ -230,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void createPlot(XYPlot plot, LineAndPointFormatter seriesFormatter, CustomPointLabeler pointLabeler,
-                            Number[] domainLabels, Number[] indexList, String domainLabel, String rangeLabel) {
+                                  Number[] domainLabels, Number[] indexList, String domainLabel, String rangeLabel) {
         plot.clear();
 
         XYSeries series = new SimpleXYSeries(
