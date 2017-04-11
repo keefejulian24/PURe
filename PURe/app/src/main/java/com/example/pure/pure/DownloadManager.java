@@ -41,7 +41,8 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
             }
             rd.close();
         } catch (Exception e) {
-            Toast.makeText(activity.getApplicationContext(), "error found", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(activity.getApplicationContext(), "error found", Toast.LENGTH_SHORT).show();
+            Log.d("doInBackground():", "Exception called");
             e.printStackTrace();
         }
         return result.toString();
@@ -49,13 +50,13 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
 
     protected void onPostExecute(String result) {
         Log.d("RESULT", result);
-        Toast.makeText(activity.getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(activity.getApplicationContext(), result, Toast.LENGTH_SHORT).show();
         // convert json
         try{
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             JSONObject resultJSON = new JSONObject(result);
-            JSONArray dataJSON = resultJSON.getJSONArray("data");
             String type = resultJSON.getString("type");
+            JSONArray dataJSON = resultJSON.getJSONArray("data");
             Log.d("RESULT LEN", "" + dataJSON.length());
 
             if (type.equals("UVI")) {
@@ -92,7 +93,7 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
 
                 ((Button) activity.findViewById(R.id.pm25_level)).setText("PM 2.5: " + MainActivity.pm25List[MainActivity.pm25List.length >> 1]);
             } else {
-                Toast.makeText(activity.getApplicationContext(), "Something was wrong with the server:(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity.getApplicationContext(), "Something was wrong :(", Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {

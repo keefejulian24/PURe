@@ -8,7 +8,7 @@
 
     <com.androidplot.xy.XYPlot
         xmlns:ap="http://schemas.android.com/apk/res-auto"
-        style="@style/APDefacto.Dark"
+        style="@style/APDefacto.Light"
         android:id="@+id/psi_plot"
         android:layout_width="match_parent"
         android:layout_height="300dp"

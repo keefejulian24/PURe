@@ -143,8 +143,7 @@ public class MainActivity extends AppCompatActivity {
         uviPlot = (XYPlot) findViewById(R.id.uvi_plot);
         uviSeriesFormatter = new LineAndPointFormatter();
         uviPointLabeler = new CustomPointLabeler(-1);
-        createPlot(uviPlot, uviSeriesFormatter, uviPointLabeler, uviDomainLabels, uviList, "time", "uv-index");
-
+        //createPlot(uviPlot, uviSeriesFormatter, uviPointLabeler, uviDomainLabels, uviList, "time", "uv-index");
         /*((CardView) findViewById(R.id.weather_card))*/uviPlot.setOnTouchListener(new PlotTouchListener(
                 uviPlot,
                 uviPointLabeler
@@ -154,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         psiPlot = (XYPlot) findViewById(R.id.psi_plot);
         psiSeriesFormatter = new LineAndPointFormatter();
         psiPointLabeler = new CustomPointLabeler(-1);
-        createPlot(psiPlot, psiSeriesFormatter, psiPointLabeler, psiDomainLabels, psiList, "time", "psi");
+        //createPlot(psiPlot, psiSeriesFormatter, psiPointLabeler, psiDomainLabels, psiList, "time", "psi");
         /*((CardView) findViewById(R.id.psi_card))*/psiPlot.setOnTouchListener(new PlotTouchListener(
                 psiPlot,
                 psiPointLabeler
@@ -164,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         pm25Plot = (XYPlot) findViewById(R.id.pm25_plot);
         pm25SeriesFormatter = new LineAndPointFormatter();
         pm25PointLabeler = new CustomPointLabeler(-1);
-        createPlot(pm25Plot, pm25SeriesFormatter, pm25PointLabeler, pm25DomainLabels, pm25List, "time", "pm 2.5 index");
+        //createPlot(pm25Plot, pm25SeriesFormatter, pm25PointLabeler, pm25DomainLabels, pm25List, "time", "pm 2.5 index");
         /*((CardView) findViewById(R.id.pm25_card))*/pm25Plot.setOnTouchListener(new PlotTouchListener(
                 pm25Plot,
                 pm25PointLabeler
@@ -180,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
             ((TextView) ((LinearLayout) locationTabsStrip.getChildAt(0)).getChildAt(i)).setTextColor(Color.WHITE);
 
 //        updateImage("psi", 2);
+        refreshPlot();
     }
 
     @Override
@@ -198,40 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.action_refresh) {
             // refresh data
-            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            Log.d("TIME NOW:", "" + parser.format(new Date(System.currentTimeMillis() + 0 * 1000 * 60 * 60 * 5)));
-            Log.d("TIME - 6 HOURS:", "" + parser.format(new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6)));
-            Log.d("TIME + 5 HOURS:", "" + parser.format(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5)));
-
-            int nearestRegion = new DatabaseManager(this).getNearestRegion(locationLat, locationLng);
-
-            try {
-                new DatabaseManager(this).query(
-                        new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
-                        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
-                        DatabaseManager.UVI,
-                        nearestRegion
-                );
-
-                new DatabaseManager(this).query(
-                        new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
-                        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
-                        DatabaseManager.PSI,
-                        nearestRegion
-                );
-
-                new DatabaseManager(this).query(
-                        new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
-                        new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
-                        DatabaseManager.PM25,
-                        nearestRegion
-                );
-
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
+            refreshPlot();
             return true;
         }
 
@@ -262,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
         seriesFormatter.setInterpolationParams(
                 new CatmullRomInterpolator.Params(20, CatmullRomInterpolator.Type.Centripetal));
         seriesFormatter.setPointLabeler(pointLabeler);
-        seriesFormatter.setPointLabelFormatter(new PointLabelFormatter(Color.WHITE));
+        seriesFormatter.setPointLabelFormatter(new PointLabelFormatter(Color.BLACK));
 
         Integer mins = (Integer) indexList[0];
         Integer maxs = (Integer) indexList[0];
@@ -372,6 +339,37 @@ public class MainActivity extends AppCompatActivity {
         // refresh data
         Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    public void refreshPlot() {
+        int nearestRegion = new DatabaseManager(this).getNearestRegion(locationLat, locationLng);
+
+        try {
+            new DatabaseManager(this).query(
+                    new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
+                    new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
+                    DatabaseManager.UVI,
+                    nearestRegion
+            );
+
+            new DatabaseManager(this).query(
+                    new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
+                    new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
+                    DatabaseManager.PSI,
+                    nearestRegion
+            );
+
+            new DatabaseManager(this).query(
+                    new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 6) ,
+                    new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 5),
+                    DatabaseManager.PM25,
+                    nearestRegion
+            );
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 
     public void updateImage(String type, int val){

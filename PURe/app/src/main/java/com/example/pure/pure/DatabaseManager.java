@@ -34,8 +34,8 @@ class DatabaseManager {
     }
 
     public int getNearestRegion(double lat, double lon) {
-        double dist = Haversine.haversine(latitude[5], longitude[5], lat, lon);
-        int ret = 5;
+        double dist = Haversine.haversine(latitude[4], longitude[4], lat, lon);
+        int ret = 4;
         for (int i = 0; i < 5; i++) {
             double currentDist = Haversine.haversine(latitude[i], longitude[i], lat, lon);
             if (currentDist < dist) {
@@ -50,11 +50,11 @@ class DatabaseManager {
         if (table < 0 || table > 2) throw new DatabaseManagerException("wrong table value");
         if (region < 0 || region > 5) throw new DatabaseManagerException("wrong region value");
 
-        String targetURL = "http://10.27.121.166/pure/?type=" +
+        String targetURL = "http://172.20.34.76/pure/?type=" +
                 tableName[table] + "&region=" + regionName[region] + "&start=" +
                 dateToString(startDate) + "&end=" + dateToString(endDate);
 
-        Toast.makeText(activity.getApplicationContext(), targetURL, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(activity.getApplicationContext(), targetURL, Toast.LENGTH_SHORT).show();
         new DownloadManager(activity).execute(targetURL);
     }
 
