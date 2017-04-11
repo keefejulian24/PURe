@@ -32,6 +32,11 @@ import com.google.android.gms.maps.model.LatLng;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import android.content.res.Resources;
+import android.widget.ImageView;
+import android.graphics.drawable.Drawable;
+import android.content.Context;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -173,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < 2; i++)
             ((TextView) ((LinearLayout) locationTabsStrip.getChildAt(0)).getChildAt(i)).setTextColor(Color.WHITE);
+
+//        updateImage("psi", 2);
     }
 
     @Override
@@ -351,5 +358,28 @@ public class MainActivity extends AppCompatActivity {
         // refresh data
         Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
         return true;
+    }
+
+    public void updateImage(String type, int val){
+        String param;
+        if(val<=1){
+            param = "1";
+        }
+        else if(val<=2) {
+            param = "2";
+        }
+        else {
+            param = "3";
+        }
+        String uri = "@mipmap/" + type + "_" + param;
+
+        int imageResource = getResources().getIdentifier(uri, null, getPackageName());
+
+        Resources resImg = getResources();
+        int id = resImg.getIdentifier(type + "_icon", "id", this.getPackageName());
+        ImageView theImage = (ImageView)findViewById(id);
+
+        Drawable res = getResources().getDrawable(imageResource);
+        theImage.setImageDrawable(res);
     }
 }
