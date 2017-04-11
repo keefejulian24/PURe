@@ -68,9 +68,27 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
 
                 ((Button) activity.findViewById(R.id.uvi_level)).setText("UVI: " + MainActivity.uviList[MainActivity.uviList.length >> 1]);
             } else if (type.equals("PSI")) {
+                for (int i = 0; i < MainActivity.psiDomainLabels.length; i++) {
+                    JSONObject data = dataJSON.getJSONObject(i);
+                    MainActivity.psiDomainLabels[i] = formatter.parse(data.getString("date")).getHours();
+                    MainActivity.psiList[i] = Integer.parseInt(data.getString("value"));
+                }
 
+                MainActivity.createPlot(MainActivity.psiPlot, MainActivity.psiSeriesFormatter,
+                        MainActivity.psiPointLabeler, MainActivity.psiDomainLabels, MainActivity.psiList, "time", "psi");
+
+                ((Button) activity.findViewById(R.id.psi_level)).setText("PSI: " + MainActivity.psiList[MainActivity.psiList.length >> 1]);
             } else if (type.equals("PM25")) {
+                for (int i = 0; i < MainActivity.pm25DomainLabels.length; i++) {
+                    JSONObject data = dataJSON.getJSONObject(i);
+                    MainActivity.pm25DomainLabels[i] = formatter.parse(data.getString("date")).getHours();
+                    MainActivity.pm25List[i] = Integer.parseInt(data.getString("value"));
+                }
 
+                MainActivity.createPlot(MainActivity.pm25Plot, MainActivity.pm25SeriesFormatter,
+                        MainActivity.pm25PointLabeler, MainActivity.pm25DomainLabels, MainActivity.pm25List, "time", "pm 2.5 index");
+
+                ((Button) activity.findViewById(R.id.pm25_level)).setText("PM 2.5: " + MainActivity.pm25List[MainActivity.pm25List.length >> 1]);
             } else {
                 Toast.makeText(activity.getApplicationContext(), "Something was wrong with the server:(", Toast.LENGTH_SHORT).show();
             }

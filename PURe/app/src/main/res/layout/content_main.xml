@@ -39,10 +39,10 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/weather_title"
+                        android:id="@+id/uvi_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Weather"
+                        android:text="UVI"
                         android:gravity="center_horizontal"
                         android:background="@drawable/border_bottom"
                         android:padding="10dp"/>
