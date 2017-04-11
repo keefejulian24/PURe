@@ -41,6 +41,7 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
             }
             rd.close();
         } catch (Exception e) {
+            Toast.makeText(activity.getApplicationContext(), "error found", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
         return result.toString();
@@ -48,6 +49,7 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
 
     protected void onPostExecute(String result) {
         Log.d("RESULT", result);
+        Toast.makeText(activity.getApplicationContext(), result, Toast.LENGTH_SHORT).show();
         // convert json
         try{
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -93,7 +95,7 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
                 Toast.makeText(activity.getApplicationContext(), "Something was wrong with the server:(", Toast.LENGTH_SHORT).show();
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(activity.getApplicationContext(), "Something was wrong :(", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
