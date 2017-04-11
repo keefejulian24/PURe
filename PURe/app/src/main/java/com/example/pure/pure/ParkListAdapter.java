@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+
 import java.util.ArrayList;
 
 /**
@@ -32,12 +34,16 @@ public class ParkListAdapter extends ArrayAdapter<Park> {
         TextView parkWalkingDistance = (TextView) convertView.findViewById(R.id.park_walking_distance);
         // Populate the data into the template view using the data object
         parkName.setText(park.getName());
-        parkWalkingDistance.setText("Distance: " + Double.toString(getWalkingDistance()));
+        parkWalkingDistance.setText("Distance: " + Double.toString(getWalkingDistance(park.getLocation().latitude, park.getLocation().longitude, MainActivity.locationLat, MainActivity.locationLng)) + " km");
         // Return the completed view to render on screen
         return convertView;
     }
 
-    public double getWalkingDistance() {
-        return 0;
+    public double getWalkingDistance(double lat1, double lng1, double lat2, double lng2) {
+        double distance = Haversine.haversine(lat1, lng1, lat2, lng2);
+        BigDecimal bigDecimal = new BigDecimal(distance);
+        bigDecimal = bigDecimal.setScale(2,
+                BigDecimal.ROUND_HALF_UP);
+        return bigDecimal.doubleValue();
     }
 }

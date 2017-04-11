@@ -1,5 +1,6 @@
 package com.example.pure.pure;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.graphics.*;
 import android.provider.ContactsContract;
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
     public static CustomPointLabeler psiPointLabeler = null;
     public static CustomPointLabeler pm25PointLabeler = null;
 
-    public static double locationLat;
-    public static double locationLng;
+    public static double locationLat = 0;
+    public static double locationLng = 0;
 
     public static int[] mrtTabsColor = new int[]{
             Color.RED,
@@ -344,5 +345,11 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
+    }
+
+    public static boolean refreshData(Context context) {
+        // refresh data
+        Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
+        return true;
     }
 }
