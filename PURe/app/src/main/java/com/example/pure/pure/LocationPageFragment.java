@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
@@ -19,6 +20,8 @@ import android.support.v7.widget.CardView;
 import android.support.v4.app.FragmentTransaction;
 
 import com.astuetz.PagerSlidingTabStrip;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 public class LocationPageFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_LOCATION_PAGE";
@@ -64,6 +67,11 @@ public class LocationPageFragment extends Fragment {
                 @Override
                 public void onPlaceSelected(Place place) {
                     Toast.makeText(getActivity(), place.getAddress().toString(), Toast.LENGTH_SHORT).show();
+
+                    MainActivity.locationLat = place.getLatLng().latitude;
+                    MainActivity.locationLng = place.getLatLng().longitude;
+
+                    MainActivity.refreshData(getContext());
                 }
 
                 @Override
