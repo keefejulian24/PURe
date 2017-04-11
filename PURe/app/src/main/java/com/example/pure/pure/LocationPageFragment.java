@@ -9,7 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.common.api.Status;
 import android.widget.Toast;
+import android.support.v7.widget.CardView;
+
+import android.support.v4.app.FragmentTransaction;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -48,7 +55,27 @@ public class LocationPageFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (pageNumber == 1) {
+        if (pageNumber == 0){
+            /*CREATE PLACES AUTOCOMPLETE*/
+            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            SupportPlaceAutocompleteFragment autocompleteFragment = new SupportPlaceAutocompleteFragment();
+
+            autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+                @Override
+                public void onPlaceSelected(Place place) {
+                    Toast.makeText(getActivity(), place.getAddress().toString(), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onError(Status status) {
+                    Toast.makeText(getActivity(), status.getStatus().toString(), Toast.LENGTH_SHORT).show();
+                }
+
+            });
+
+            transaction.replace(R.id.place_autocomplete_fragment_nest, autocompleteFragment).commit();
+        }
+        else if (pageNumber == 1) {
             /*CREATE MRT PAGER*/
             ViewPager mrtPager = (ViewPager) getView().findViewById(R.id.mrt_pager);
             mrtPager.setAdapter(new MRTFragmentPagerAdapter(getFragmentManager()));
