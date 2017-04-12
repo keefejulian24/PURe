@@ -58,7 +58,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:src="@mipmap/sunny_icon">
+                            android:src="@mipmap/uvi_1">
                         </ImageView>
 
                         <Button
@@ -115,7 +115,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:src="@mipmap/sunny_icon">
+                            android:src="@mipmap/psi_1">
                         </ImageView>
 
                         <Button
@@ -172,7 +172,7 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:src="@mipmap/sunny_icon">
+                            android:src="@mipmap/pm25_1">
                         </ImageView>
 
                         <Button

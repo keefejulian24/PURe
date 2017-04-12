@@ -2,6 +2,8 @@ package com.example.pure.pure;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.*;
@@ -10,6 +12,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,14 +108,18 @@ public class LocationPageFragment extends Fragment {
                     LocationManager locationManager = (LocationManager)
                             getActivity().getSystemService(Context.LOCATION_SERVICE);
                     if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                                0);
+                        ActivityCompat.requestPermissions(
+                                getActivity(),
+                                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                                0
+                        );
                     }
                     else {
+                        Log.d("set button", "have permission");
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 500.0f, new LocationListener() {
                             @Override
                             public void onLocationChanged(Location location) {
-                               // ?
+                                // ?
                             }
 
                             @Override
@@ -134,9 +142,46 @@ public class LocationPageFragment extends Fragment {
                         if (adapter != null) {
                             adapter.notifyDataSetChanged();
                         }
-                        Location currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                        // check gps & network enabled or not
+                        boolean gpsEnabled = false, networkEnabled = false;
+                        try {
+                            gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                        } catch (Exception e) {
+
+                        }
+
+                        try {
+                            networkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                        } catch (Exception e) {
+
+                        }
+
+                        if (!networkEnabled && !gpsEnabled) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle(R.string.gps_not_found_title);  // GPS not found
+                            builder.setMessage(R.string.gps_not_found_message); // Want to enable?
+                            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    getActivity().startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                }
+                            });
+                            builder.setNegativeButton(R.string.no, null);
+                            builder.create().show();
+                            return;
+                        }
+
+                        Location currentLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        Log.d("currentLocation", "" + (currentLocation == null));
+
+                        if (currentLocation == null) {
+                            Toast.makeText(getContext(), "connection problem :(", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         MainActivity.locationLat = currentLocation.getLatitude();
                         MainActivity.locationLng = currentLocation.getLongitude();
+                        MainActivity.setLocationText("Current Location");
                         MainActivity.refreshData(getContext());
                     }
                 }
