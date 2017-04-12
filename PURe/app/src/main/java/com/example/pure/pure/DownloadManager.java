@@ -70,6 +70,15 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
                         MainActivity.uviPointLabeler, MainActivity.uviDomainLabels, MainActivity.uviList, "time", "uv-index");
 
                 ((Button) activity.findViewById(R.id.uvi_level)).setText("UVI: " + MainActivity.uviList[MainActivity.uviList.length >> 1]);
+
+                int level = MainActivity.uviList[MainActivity.uviList.length >> 1].intValue();
+                if (level < 3) level = 0;
+                else if (level < 6) level = 1;
+                else if (level < 8) level = 2;
+                else if (level < 11) level = 3;
+                else level = 4;
+
+                ((MainActivity) activity).updateImage("uvi", level);
             } else if (type.equals("PSI")) {
                 for (int i = 0; i < MainActivity.psiDomainLabels.length; i++) {
                     JSONObject data = dataJSON.getJSONObject(i);
@@ -81,6 +90,7 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
                         MainActivity.psiPointLabeler, MainActivity.psiDomainLabels, MainActivity.psiList, "time", "psi");
 
                 ((Button) activity.findViewById(R.id.psi_level)).setText("PSI: " + MainActivity.psiList[MainActivity.psiList.length >> 1]);
+                ((MainActivity) activity).updateImage("psi", MainActivity.psiList[MainActivity.psiList.length >> 1].intValue() / 50);
             } else if (type.equals("PM25")) {
                 for (int i = 0; i < MainActivity.pm25DomainLabels.length; i++) {
                     JSONObject data = dataJSON.getJSONObject(i);
@@ -92,6 +102,14 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
                         MainActivity.pm25PointLabeler, MainActivity.pm25DomainLabels, MainActivity.pm25List, "time", "pm 2.5 index");
 
                 ((Button) activity.findViewById(R.id.pm25_level)).setText("PM 2.5: " + MainActivity.pm25List[MainActivity.pm25List.length >> 1]);
+                int level = MainActivity.pm25List[MainActivity.pm25List.length >> 1].intValue();
+                if (level < 13) level = 0;
+                else if (level < 36) level = 1;
+                else if (level < 56) level = 2;
+                else if (level < 151) level = 3;
+                else level = 4;
+
+                ((MainActivity) activity).updateImage("pm25", level);
             } else {
                 Toast.makeText(activity.getApplicationContext(), "Something was wrong :(", Toast.LENGTH_SHORT).show();
             }

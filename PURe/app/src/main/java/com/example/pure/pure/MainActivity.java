@@ -1,6 +1,8 @@
 package com.example.pure.pure;
 
 import android.content.Context;
+import android.location.*;
+import android.location.Location;
 import android.os.Bundle;
 import android.graphics.*;
 import android.provider.ContactsContract;
@@ -373,14 +375,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateImage(String type, int val){
+        Log.d("updateImage", type + " " + val);
         String param;
         String text;
         if(val<=1){
             param = "1";
-            if(type == "uvi"){
+            if(type.equals("uvi")){
                 text = "Ain't nothing beats a good stroll on a sunny day!";
             }
-            else if(type == "psi"){
+            else if(type.equals("psi")){
                 text = "You are good to go! Get out there and ace your day!";
             }
             else {
@@ -389,10 +392,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(val<=2) {
             param = "2";
-            if(type == "uvi"){
+            if(type.equals("uvi")){
                 text = "Time to wear that stylish shades you bought last summer! Oh, and an SPF 30+ sunblock won't hurt too!";
             }
-            else if(type == "psi"){
+            else if(type.equals("psi")){
                 text = "You are good to go! Get out there and enjoy your day!";
             }
             else {
@@ -401,10 +404,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(val<=3){
             param = "3";
-            if(type == "uvi"){
+            if(type.equals("uvi")){
                 text = "Don't stay out there too long! An SPF 30+ every 2 hour would help a lot!";
             }
-            else if(type == "psi"){
+            else if(type.equals("psi")){
                 text = "Uh-oh, you might not want to stay outside that much. To indoor gym you go!";
             }
             else {
@@ -413,10 +416,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(val<=4){
             param = "4";
-            if(type == "uvi"){
+            if(type.equals("uvi")){
                 text = "Are you sure you are going out? Well, you might want to hop from shades to shades then! And yeah, don't forget that SPF 30+ every 2 hour.";
             }
-            else if(type == "psi"){
+            else if(type.equals("psi")){
                 text = "What? Are you sure you don't want to stay indoor? I would avoid going out if I were you...";
             }
             else {
@@ -425,10 +428,10 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             param = "5";
-            if(type == "uvi"){
+            if(type.equals("uvi")){
                 text = "The sun! The sun is killing - okay no, not that extreme. But you might want to go back to the safety of your cave. Or SPF+ 30 every 2 hour, stricly non-noon only, if you really have to.";
             }
-            else if(type == "psi"){
+            else if(type.equals("psi")){
                 text = "Nope. Definitely nope. Back to the safety of your cave!";
             }
             else {
@@ -441,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
 
         Resources resImg = getResources();
         int idIcon = resImg.getIdentifier(type + "_icon", "id", this.getPackageName());
-        int idText = resImg.getIdentifier(type + "_icon", "id", this.getPackageName());
+        int idText = resImg.getIdentifier(type + "_text", "id", this.getPackageName());
         ImageView theImage = (ImageView)findViewById(idIcon);
         TextView theText = (TextView)findViewById(idText);
 
