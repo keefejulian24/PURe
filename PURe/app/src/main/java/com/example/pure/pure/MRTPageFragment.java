@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,21 +97,23 @@ public class MRTPageFragment extends Fragment {
                 ArrayList<Park> parks = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(seekBar.getProgress()).getParks();
                 parkList.setItemChecked(-1, true);
                 if (parks != null) {
-                    final ParkListAdapter adapter = new ParkListAdapter(getActivity().getBaseContext(), parks);
-                    parkList.setAdapter(adapter);
-                    parkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Park selectedPark = (Park) adapterView.getItemAtPosition(i);
-                            //Toast.makeText(getActivity().getApplicationContext(), Double.toString(selectedPark.getLocation().latitude) + ", " + Double.toString(selectedPark.getLocation().longitude), Toast.LENGTH_SHORT).show();
-                            ListView pList = (ListView) adapterView;
-                            pList.setItemChecked(i, true);
-                        }
-                    });
                     parkList.setVisibility(View.VISIBLE);
                 } else {
                     parkList.setVisibility(View.INVISIBLE);
+                    parks = new ArrayList<Park>();
                 }
+
+                final ParkListAdapter adapter = new ParkListAdapter(getActivity().getBaseContext(), parks);
+                parkList.setAdapter(adapter);
+                parkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Park selectedPark = (Park) adapterView.getItemAtPosition(i);
+                        //Toast.makeText(getActivity().getApplicationContext(), Double.toString(selectedPark.getLocation().latitude) + ", " + Double.toString(selectedPark.getLocation().longitude), Toast.LENGTH_SHORT).show();
+                        ListView pList = (ListView) adapterView;
+                        pList.setItemChecked(i, true);
+                    }
+                });
             }
         });
 
@@ -120,6 +123,7 @@ public class MRTPageFragment extends Fragment {
             public void onClick(View view) {
                 ListView parkList = (ListView) getView().findViewById(R.id.park_list);
                 ParkListAdapter adapter = (ParkListAdapter) parkList.getAdapter();
+                Log.d("Adapter:", "" + (adapter == null));
                 adapter.notifyDataSetChanged();
                 DiscreteSeekBar mrtSeekBar = (DiscreteSeekBar) getView().findViewById(R.id.mrt_seek_bar);
                 if (parkList.getCheckedItemPosition() != -1) {
