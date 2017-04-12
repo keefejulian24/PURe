@@ -72,8 +72,25 @@ public class MRTPageFragment extends Fragment {
         mrtSeekBar.setProgress(0);
         mrtSeekBar.setMax(mrtManager.getMrtLines().get(pageNumber).getMrtStations().size() - 1);
         TextView mrtName = (TextView) getView().findViewById(R.id.mrt_name);
-        mrtName.setText("Select MRT Station");
+        mrtName.setText(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(0).getName());
         mrtSeekBar.setIndicatorPopupEnabled(false);
+
+        ListView parkList = (ListView) getView().findViewById(R.id.park_list);
+        parkList.setItemChecked(-1, true);
+        ArrayList<Park> parks = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(0).getParks();
+        if (parks == null) parks = new ArrayList<Park>();
+        final ParkListAdapter adapter = new ParkListAdapter(getActivity().getBaseContext(), parks);
+        parkList.setAdapter(adapter);
+        parkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Park selectedPark = (Park) adapterView.getItemAtPosition(i);
+                //Toast.makeText(getActivity().getApplicationContext(), Double.toString(selectedPark.getLocation().latitude) + ", " + Double.toString(selectedPark.getLocation().longitude), Toast.LENGTH_SHORT).show();
+                ListView pList = (ListView) adapterView;
+                pList.setItemChecked(i, true);
+            }
+        });
+
         mrtSeekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
             @Override
             public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {
@@ -129,10 +146,12 @@ public class MRTPageFragment extends Fragment {
                 if (parkList.getCheckedItemPosition() != -1) {
                     MainActivity.locationLat = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().latitude;
                     MainActivity.locationLng = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().longitude;
+                    MainActivity.setLocationText(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getName());
                 }
                 else {
                     MainActivity.locationLat = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().latitude;
                     MainActivity.locationLng = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().longitude;
+                    MainActivity.setLocationText(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getName());
                 }
                 Toast.makeText(getActivity().getApplicationContext(), Double.toString(MainActivity.locationLat) + ", " + Double.toString(MainActivity.locationLng), Toast.LENGTH_SHORT).show();
                 MainActivity.refreshData(getContext());

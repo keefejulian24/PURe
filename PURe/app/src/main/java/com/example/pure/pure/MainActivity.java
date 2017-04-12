@@ -43,6 +43,8 @@ import android.content.Context;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
+    private static TextView locationText;
+
     public static XYPlot uviPlot;
     public static XYPlot psiPlot;
     public static XYPlot pm25Plot;
@@ -80,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        locationText = (TextView) findViewById(R.id.weather_title);
 
         /*CREATE UVI BUTTON*/
         Button buttonUVI = (Button) findViewById(R.id.uvi_level);
@@ -224,9 +228,10 @@ public class MainActivity extends AppCompatActivity {
 
         Paint lineFill = new Paint();
         lineFill.setAlpha(200);
-        lineFill.setColor(Color.YELLOW);
-        //lineFill.setShader(new LinearGradient(0, 250, 0, 0, Color.WHITE, Color.YELLOW, Shader.TileMode.REPEAT));
+        lineFill.setShader(new LinearGradient(0, 450, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
 
+        seriesFormatter.getLinePaint().setShader(new LinearGradient(0, 450, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
+        seriesFormatter.getVertexPaint().setShader(new LinearGradient(0, 450, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
         seriesFormatter.setFillPaint(lineFill);
         seriesFormatter.setInterpolationParams(
                 new CatmullRomInterpolator.Params(20, CatmullRomInterpolator.Type.Centripetal));
@@ -342,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
         return true;
     }
-
+    
     public void refreshPlot() {
         int nearestRegion = new DatabaseManager(this).getNearestRegion(locationLat, locationLng);
 
@@ -451,5 +456,9 @@ public class MainActivity extends AppCompatActivity {
         Drawable res = getResources().getDrawable(imageResource);
         theImage.setImageDrawable(res);
         theText.setText(text);
+    }
+
+    public static void setLocationText(String str) {
+        locationText.setText(str);
     }
 }

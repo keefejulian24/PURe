@@ -71,6 +71,8 @@ public class LocationPageFragment extends Fragment {
                     MainActivity.locationLat = place.getLatLng().latitude;
                     MainActivity.locationLng = place.getLatLng().longitude;
 
+                    MainActivity.setLocationText(place.getAddress().toString());
+
                     MainActivity.refreshData(getContext());
                 }
 
