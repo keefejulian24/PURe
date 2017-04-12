@@ -78,7 +78,7 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
                 else if (level < 11) level = 3;
                 else level = 4;
 
-                ((MainActivity) activity).updateImage("uvi", level);
+                ((MainActivity) activity).updateImage("uvi", level + 1);
             } else if (type.equals("PSI")) {
                 for (int i = 0; i < MainActivity.psiDomainLabels.length; i++) {
                     JSONObject data = dataJSON.getJSONObject(i);
@@ -90,7 +90,7 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
                         MainActivity.psiPointLabeler, MainActivity.psiDomainLabels, MainActivity.psiList, "time", "psi");
 
                 ((Button) activity.findViewById(R.id.psi_level)).setText("PSI: " + MainActivity.psiList[MainActivity.psiList.length >> 1]);
-                ((MainActivity) activity).updateImage("psi", MainActivity.psiList[MainActivity.psiList.length >> 1].intValue() / 50);
+                ((MainActivity) activity).updateImage("psi", MainActivity.psiList[MainActivity.psiList.length >> 1].intValue() / 50 + 1);
             } else if (type.equals("PM25")) {
                 for (int i = 0; i < MainActivity.pm25DomainLabels.length; i++) {
                     JSONObject data = dataJSON.getJSONObject(i);
@@ -109,7 +109,7 @@ public class DownloadManager extends AsyncTask<String, Void, String> {
                 else if (level < 151) level = 3;
                 else level = 4;
 
-                ((MainActivity) activity).updateImage("pm25", level);
+                ((MainActivity) activity).updateImage("pm25", level + 1);
             } else {
                 Toast.makeText(activity.getApplicationContext(), "Something was wrong :(", Toast.LENGTH_SHORT).show();
             }
