@@ -76,12 +76,16 @@ public class MainActivity extends AppCompatActivity {
             Color.rgb(141, 110, 99)
     };
 
+    public static AppCompatActivity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        activity = this;
 
         locationText = (TextView) findViewById(R.id.weather_title);
 
@@ -344,9 +348,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean refreshData(Context context) {
         // refresh data
-        ((MainActivity) context).refreshPlot();
-        Toast.makeText(context, Double.toString(locationLat) + ", " + Double.toString(locationLng), Toast.LENGTH_SHORT).show();
         Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
+        ((MainActivity) activity).refreshPlot();
         return true;
     }
     
