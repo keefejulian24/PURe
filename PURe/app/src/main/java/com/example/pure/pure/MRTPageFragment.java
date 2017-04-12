@@ -140,8 +140,9 @@ public class MRTPageFragment extends Fragment {
             public void onClick(View view) {
                 ListView parkList = (ListView) getView().findViewById(R.id.park_list);
                 ParkListAdapter adapter = (ParkListAdapter) parkList.getAdapter();
-                Log.d("Adapter:", "" + (adapter == null));
-                adapter.notifyDataSetChanged();
+                if (adapter != null) {
+                    adapter.notifyDataSetChanged();
+                }
                 DiscreteSeekBar mrtSeekBar = (DiscreteSeekBar) getView().findViewById(R.id.mrt_seek_bar);
                 if (parkList.getCheckedItemPosition() != -1) {
                     MainActivity.locationLat = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getParks().get(parkList.getCheckedItemPosition()).getLocation().latitude;
@@ -153,7 +154,6 @@ public class MRTPageFragment extends Fragment {
                     MainActivity.locationLng = mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getLocation().longitude;
                     MainActivity.setLocationText(mrtManager.getMrtLines().get(pageNumber).getMrtStations().get(mrtSeekBar.getProgress()).getName());
                 }
-                Toast.makeText(getActivity().getApplicationContext(), Double.toString(MainActivity.locationLat) + ", " + Double.toString(MainActivity.locationLng), Toast.LENGTH_SHORT).show();
                 MainActivity.refreshData(getContext());
             }
         });

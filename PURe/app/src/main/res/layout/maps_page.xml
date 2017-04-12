@@ -16,8 +16,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="set current location"
-        android:id="@+id/set_current_location"
+        android:text="set to current location"
+        android:id="@+id/set_to_current_location"
         android:layout_gravity="center"/>
 
 </LinearLayout>
