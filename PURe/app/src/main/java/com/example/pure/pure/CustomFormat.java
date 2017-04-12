@@ -10,7 +10,7 @@ public class CustomFormat extends Format {
     CustomFormat(Number[] domainLabels) {
         this.domainLabels = domainLabels;
     }
-
+    @Override
     public StringBuffer format(Object obj, StringBuffer toAppendTo, FieldPosition pos) {
         int i = Math.round(((Number) obj).floatValue());
         if (i % 3 == 0)
