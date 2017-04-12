@@ -339,6 +339,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static boolean refreshData(Context context) {
         // refresh data
+        ((MainActivity) context).refreshPlot();
+        Toast.makeText(context, Double.toString(locationLat) + ", " + Double.toString(locationLng), Toast.LENGTH_SHORT).show();
         Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
         return true;
     }

@@ -1,19 +1,28 @@
 package com.example.pure.pure;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.*;
+import android.location.Location;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.common.api.Status;
+
 import android.widget.Toast;
 import android.support.v7.widget.CardView;
 
@@ -58,7 +67,7 @@ public class LocationPageFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (pageNumber == 0){
+        if (pageNumber == 0) {
             /*CREATE PLACES AUTOCOMPLETE*/
             FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
             SupportPlaceAutocompleteFragment autocompleteFragment = new SupportPlaceAutocompleteFragment();
@@ -67,6 +76,12 @@ public class LocationPageFragment extends Fragment {
                 @Override
                 public void onPlaceSelected(Place place) {
                     Toast.makeText(getActivity(), place.getAddress().toString(), Toast.LENGTH_SHORT).show();
+
+                    ListView parkList = (ListView) getActivity().findViewById(R.id.park_list);
+                    ParkListAdapter adapter = (ParkListAdapter) parkList.getAdapter();
+                    if (adapter != null) {
+                        adapter.notifyDataSetChanged();
+                    }
 
                     MainActivity.locationLat = place.getLatLng().latitude;
                     MainActivity.locationLng = place.getLatLng().longitude;
@@ -79,6 +94,50 @@ public class LocationPageFragment extends Fragment {
                     Toast.makeText(getActivity(), status.getStatus().toString(), Toast.LENGTH_SHORT).show();
                 }
 
+            });
+            Button setToCurrentLocationButton = (Button) getView().findViewById(R.id.set_to_current_location);
+            setToCurrentLocationButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    LocationManager locationManager = (LocationManager)
+                            getActivity().getSystemService(Context.LOCATION_SERVICE);
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
+                                0);
+                    }
+                    else {
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 500.0f, new LocationListener() {
+                            @Override
+                            public void onLocationChanged(Location location) {
+                               // ?
+                            }
+
+                            @Override
+                            public void onStatusChanged(String s, int i, Bundle bundle) {
+                                // ?
+                            }
+
+                            @Override
+                            public void onProviderEnabled(String s) {
+                                // ?
+                            }
+
+                            @Override
+                            public void onProviderDisabled(String s) {
+                                // ?
+                            }
+                        });
+                        ListView parkList = (ListView) getActivity().findViewById(R.id.park_list);
+                        ParkListAdapter adapter = (ParkListAdapter) parkList.getAdapter();
+                        if (adapter != null) {
+                            adapter.notifyDataSetChanged();
+                        }
+                        Location currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        MainActivity.locationLat = currentLocation.getLatitude();
+                        MainActivity.locationLng = currentLocation.getLongitude();
+                        MainActivity.refreshData(getContext());
+                    }
+                }
             });
 
             transaction.replace(R.id.place_autocomplete_fragment_nest, autocompleteFragment).commit();
