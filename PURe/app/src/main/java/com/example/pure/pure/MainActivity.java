@@ -232,10 +232,10 @@ public class MainActivity extends AppCompatActivity {
 
         Paint lineFill = new Paint();
         lineFill.setAlpha(200);
-        lineFill.setShader(new LinearGradient(0, 450, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
+        lineFill.setShader(new LinearGradient(0, 1250, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
 
-        seriesFormatter.getLinePaint().setShader(new LinearGradient(0, 450, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
-        seriesFormatter.getVertexPaint().setShader(new LinearGradient(0, 450, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
+        seriesFormatter.getLinePaint().setShader(new LinearGradient(0, 1250, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
+        seriesFormatter.getVertexPaint().setShader(new LinearGradient(0, 1250, 0, 0, Color.YELLOW, Color.RED, Shader.TileMode.CLAMP));
         seriesFormatter.setFillPaint(lineFill);
         seriesFormatter.setInterpolationParams(
                 new CatmullRomInterpolator.Params(20, CatmullRomInterpolator.Type.Centripetal));

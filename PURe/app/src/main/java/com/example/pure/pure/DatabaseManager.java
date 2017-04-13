@@ -50,7 +50,7 @@ class DatabaseManager {
         if (table < 0 || table > 2) throw new DatabaseManagerException("wrong table value");
         if (region < 0 || region > 5) throw new DatabaseManagerException("wrong region value");
 
-        String targetURL = "http://192.168.0.8/pure/?type=" +
+        String targetURL = "http://10.27.119.161/pure/?type=" +
                 tableName[table] + "&region=" + regionName[region] + "&start=" +
                 dateToString(startDate) + "&end=" + dateToString(endDate);
 
