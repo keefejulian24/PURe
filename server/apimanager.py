@@ -26,7 +26,30 @@ class APIManager:
     def fetchPM25(self, date):
         data = self.req.getData(self.apiData['pm25'], date)
         return data['region_metadata'], data['items']
-
+    
+    def createPrediction(self, date):
+        for i in range(24):
+            self.db.execute("INSERT INTO UVI VALUES('{}', 0);".format(str(date + datetime.timedelta(hours=i))))
+            self.db.execute("INSERT INTO PSI VALUES('{}', 0, 0, 0, 0, 0, 0);".format(str(date + datetime.timedelta(hours=i))))        
+            self.db.execute("INSERT INTO PM25 VALUES('{}', 0, 0, 0, 0, 0);".format(str(date + datetime.timedelta(hours=i))))
+            self.db.commit()
+        
+        for i in range(24):
+            query = "UPDATE UVI SET value = (SELECT IF(ISNULL(t.a), 0, round(t.a)) FROM (SELECT avg(value) AS a FROM UVI WHERE HOUR(TIME(date)) = {} ORDER BY date DESC LIMIT 100) t) WHERE HOUR(TIME(date)) = {} AND date >= '{}';".format(i, i, str(date))
+            self.db.execute(query)
+            for type in ['south', 'north', 'central', 'west', 'east']:
+                query = "UPDATE PSI SET {} = (SELECT * FROM (SELECT ROUND(AVG({})) FROM PSI WHERE HOUR(TIME(date)) = {} ORDER BY date DESC LIMIT 10) t) WHERE HOUR(TIME(date)) = {} AND date > '{}'".format(type, type, i, i, str(date))
+                self.db.execute(query)
+                query = "UPDATE PM25 SET {} = (SELECT * FROM (SELECT ROUND(AVG({})) FROM PM25 WHERE HOUR(TIME(date)) = {} ORDER BY date DESC LIMIT 10) t) WHERE HOUR(TIME(date)) = {} AND date > '{}'".format(type, type, i, i, str(date))
+                self.db.execute(query)
+            
+            for type in ['south', 'north', 'central', 'west', 'east']:
+                query = "UPDATE PSI SET {} = (SELECT * FROM (SELECT {} FROM PSI WHERE HOUR(TIME(date)) = 23 ORDER BY date DESC LIMIT 1) t) WHERE HOUR(TIME(date)) = 0 AND date > '{}'".format(type, type, str(date))
+                self.db.execute(query)
+                query = "UPDATE PM25 SET {} = (SELECT * FROM (SELECT {} FROM PM25 WHERE HOUR(TIME(date)) = 23 ORDER BY date DESC LIMIT 1) t) WHERE HOUR(TIME(date)) = 0 AND date > '{}'".format(type, type, str(date))
+                self.db.execute(query)
+            self.db.commit()
+        
     def storeUVI(self, data):
         if len(data) == 0 or 'index' not in data[-1]:
             return
